@@ -1,0 +1,602 @@
+/* =========================================================
+   Med Car Service — Central de Links
+   ========================================================= */
+
+
+/* =========================================================
+   1. CORES E VARIÁVEIS GERAIS
+   ========================================================= */
+
+:root {
+  --red: #D03B3B;
+  --black: #0A0A0A;
+  --green: #00E204;
+  --pink: #FE4574;
+
+  --white: #FFFFFF;
+  --soft-white: #F7F7F7;
+
+  --font-main: "Atkinson Hyperlegible Next", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Largura máxima da área central */
+  --content-width: 520px;
+
+  /* Espaçamento lateral responsivo */
+  --page-padding: clamp(18px, 4vw, 36px);
+}
+
+
+/* =========================================================
+   2. RESET BÁSICO
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--black);
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--font-main);
+  color: var(--white);
+  background: var(--black);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+
+/* =========================================================
+   3. ESTRUTURA PRINCIPAL
+   ========================================================= */
+
+.page-shell {
+  position: relative;
+
+  /* Ocupa 100% da altura da tela */
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  display: grid;
+  place-items: center;
+
+  padding:
+    max(28px, env(safe-area-inset-top))
+    var(--page-padding)
+    max(28px, env(safe-area-inset-bottom));
+
+  overflow: hidden;
+
+  /*
+    Fundo:
+    1. Gradiente preto para escurecer as laterais
+    2. Imagem do carro
+  */
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 10, 10, 0.94) 0%,
+      rgba(10, 10, 10, 0.68) 22%,
+      rgba(10, 10, 10, 0.50) 50%,
+      rgba(10, 10, 10, 0.68) 78%,
+      rgba(10, 10, 10, 0.94) 100%
+    ),
+    url("./assets/cliov6.webp") center center / cover no-repeat;
+}
+
+
+/* =========================================================
+   4. OVERLAY VERMELHO
+   ========================================================= */
+
+/*
+  Essa camada cria o glow vermelho central
+  parecido com o design de referência.
+*/
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(208, 59, 59, 0.45) 0%,
+      rgba(208, 59, 59, 0.30) 18%,
+      rgba(208, 59, 59, 0.16) 38%,
+      rgba(10, 10, 10, 0.20) 58%,
+      rgba(10, 10, 10, 0.55) 100%
+    );
+}
+
+
+/* =========================================================
+   5. CONTEÚDO CENTRAL
+   ========================================================= */
+
+.link-card {
+  position: relative;
+  z-index: 1;
+
+  width: min(100%, var(--content-width));
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+
+/* Texto superior */
+.eyebrow {
+  margin: 0 0 clamp(18px, 3vh, 28px);
+
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+
+/* =========================================================
+   6. LOGO
+   ========================================================= */
+
+.brand-mark {
+  width: clamp(112px, 18vw, 145px);
+
+  /*
+    Mantém a proporção vertical parecida
+    com o símbolo da marca.
+  */
+  aspect-ratio: 0.78;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: clamp(24px, 4vh, 38px);
+
+  background: var(--black);
+
+  /*
+    Formato arredondado semelhante
+    ao fundo do logo no layout.
+  */
+  border-radius: 42% / 32%;
+
+  overflow: hidden;
+}
+
+.brand-logo {
+  width: 93%;
+  height: 93%;
+
+  object-fit: contain;
+}
+
+
+/* =========================================================
+   7. TÍTULO
+   ========================================================= */
+
+h1 {
+  margin: 0 0 clamp(32px, 5vh, 48px);
+
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 0.98;
+
+  font-weight: 800;
+  letter-spacing: -0.035em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   8. ÁREA DOS BOTÕES
+   ========================================================= */
+
+.links {
+  width: 100%;
+
+  display: grid;
+
+  gap: 14px;
+}
+
+
+/* Botão principal */
+.link-button {
+  position: relative;
+
+  width: 100%;
+  min-height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /*
+    Deixamos espaço à direita
+    para o ícone circular.
+  */
+  padding: 14px 72px 14px 24px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--black);
+
+  text-decoration: none;
+
+  font-size: clamp(1rem, 2vw, 1.12rem);
+  font-weight: 720;
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+
+/* Efeito ao passar o mouse */
+.link-button:hover {
+  transform: translateY(-2px);
+
+  background: var(--white);
+
+  box-shadow:
+    0 16px 38px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+
+/* Efeito ao clicar */
+.link-button:active {
+  transform: translateY(0);
+}
+
+
+/* Foco para navegação por teclado */
+.link-button:focus-visible,
+.address:focus-visible {
+  outline: 3px solid var(--white);
+  outline-offset: 4px;
+}
+
+
+/* Texto do botão */
+.link-label {
+  line-height: 1.15;
+}
+
+
+/* =========================================================
+   9. ÍCONES CIRCULARES
+   ========================================================= */
+
+.icon-badge {
+  position: absolute;
+
+  right: 4px;
+
+  width: 50px;
+  height: 50px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 999px;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.24);
+}
+
+
+/* Imagens dentro dos círculos */
+.icon-badge img {
+  width: 25px;
+  height: 25px;
+
+  object-fit: contain;
+}
+
+
+/* SVG de localização */
+.icon-badge svg {
+  width: 24px;
+  height: 24px;
+
+  fill: currentColor;
+}
+
+
+/* Botão WhatsApp */
+.icon-badge--whatsapp {
+  background: var(--green);
+  color: var(--white);
+}
+
+
+/* Botão Instagram */
+.icon-badge--instagram {
+  background: var(--pink);
+  color: var(--white);
+}
+
+
+/* Botão Google */
+.icon-badge--google {
+  background: var(--red);
+  color: var(--white);
+}
+
+
+/* =========================================================
+   10. ENDEREÇO
+   ========================================================= */
+
+.address {
+  width: fit-content;
+  max-width: 100%;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: clamp(48px, 7vh, 72px);
+
+  color: var(--white);
+
+  text-decoration: none;
+
+  font-size: clamp(0.95rem, 2vw, 1.08rem);
+  font-weight: 650;
+  line-height: 1.35;
+
+  text-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.48);
+}
+
+
+/* Ícone do endereço */
+.address svg {
+  flex: 0 0 24px;
+
+  width: 24px;
+  height: 24px;
+
+  fill: currentColor;
+}
+
+
+/* Hover no endereço */
+.address:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+
+/* =========================================================
+   11. TABLETS
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .page-shell {
+    /*
+      Ajusta o enquadramento da foto
+      para telas menores.
+    */
+    background-position: 56% center;
+  }
+
+  .link-card {
+    width: min(100%, 500px);
+  }
+
+}
+
+
+/* =========================================================
+   12. CELULARES
+   ========================================================= */
+
+@media (max-width: 520px) {
+
+  .page-shell {
+    /*
+      Em celulares deixamos o conteúdo
+      começar mais próximo do topo.
+    */
+    place-items: start center;
+
+    padding-top:
+      max(34px, env(safe-area-inset-top));
+
+    padding-bottom:
+      max(34px, env(safe-area-inset-bottom));
+
+    /*
+      Move um pouco o enquadramento
+      do carro para melhorar o background.
+    */
+    background-position: 58% center;
+  }
+
+
+  .eyebrow {
+    margin-bottom: 16px;
+  }
+
+
+  .brand-mark {
+    width: 104px;
+
+    margin-bottom: 22px;
+  }
+
+
+  h1 {
+    margin-bottom: 28px;
+
+    font-size:
+      clamp(1.9rem, 9vw, 2.55rem);
+  }
+
+
+  .links {
+    gap: 12px;
+  }
+
+
+  .link-button {
+    min-height: 56px;
+
+    padding-left: 18px;
+    padding-right: 66px;
+
+    font-size: 1rem;
+  }
+
+
+  .icon-badge {
+    width: 48px;
+    height: 48px;
+  }
+
+
+  .address {
+    margin-top: 38px;
+
+    align-items: flex-start;
+
+    text-align: left;
+  }
+
+}
+
+
+/* =========================================================
+   13. CELULARES MUITO PEQUENOS
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  .link-button {
+    padding-left: 16px;
+    padding-right: 62px;
+
+    font-size: 0.94rem;
+  }
+
+
+  .icon-badge {
+    width: 46px;
+    height: 46px;
+  }
+
+
+  .address {
+    font-size: 0.9rem;
+  }
+
+}
+
+
+/* =========================================================
+   14. CELULAR DEITADO / TELAS BAIXAS
+   ========================================================= */
+
+@media (max-height: 680px) and (orientation: landscape) {
+
+  .page-shell {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+
+  .eyebrow {
+    margin-bottom: 12px;
+  }
+
+
+  .brand-mark {
+    width: 88px;
+
+    margin-bottom: 16px;
+  }
+
+
+  h1 {
+    margin-bottom: 22px;
+
+    font-size: 2rem;
+  }
+
+
+  .links {
+    gap: 10px;
+  }
+
+
+  .link-button {
+    min-height: 50px;
+  }
+
+
+  .icon-badge {
+    width: 44px;
+    height: 44px;
+  }
+
+
+  .address {
+    margin-top: 24px;
+  }
+
+}
+
+
+/* =========================================================
+   15. ACESSIBILIDADE
+   ========================================================= */
+
+/*
+  Se o usuário tiver configurado o dispositivo
+  para reduzir animações, removemos transitions.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+
+}
