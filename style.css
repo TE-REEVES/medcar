@@ -492,9 +492,10 @@ h1 {
   .address {
     margin-top: 38px;
 
-    align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 
-    text-align: left;
+  text-align: center;
   }
 
 }
