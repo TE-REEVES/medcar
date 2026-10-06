@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- Faz o layout se adaptar corretamente em celulares e tablets -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO básico -->
+  <title>Med Car Service | Central de links</title>
+
+  <meta
+    name="description"
+    content="Central de links da Med Car Service. Entre em contato pelo WhatsApp, acesse o Instagram ou encontre a empresa no Google."
+  />
+
+  <meta name="theme-color" content="#0A0A0A" />
+
+  <!-- Google Fonts: Atkinson Hyperlegible Next -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+
+  <!--
+    Estrutura principal da página.
+    O background com o carro fica configurado pelo CSS.
+  -->
+  <main class="page-shell">
+
+    <!-- Camada de sombra + glow vermelho -->
+    <div class="background-overlay" aria-hidden="true"></div>
+
+    <!-- Conteúdo central -->
+    <section class="link-card" aria-labelledby="page-title">
+
+      <!-- Texto superior -->
+      <p class="eyebrow">
+        Central de links
+      </p>
+
+      <!-- Logo -->
+      <div class="brand-mark">
+        <img
+          src="./assets/logo.png"
+          alt="Logo Med Car Service"
+          class="brand-logo"
+        />
+      </div>
+
+      <!-- Nome da empresa -->
+      <h1 id="page-title">
+        Med Car Service
+      </h1>
+
+      <!-- Links principais -->
+      <nav
+        class="links"
+        aria-label="Links principais da Med Car Service"
+      >
+
+        <!-- WhatsApp -->
+        <a
+          class="link-button"
+          href="https://wa.me/5511981866685"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chamar a Med Car Service no WhatsApp"
+        >
+          <span class="link-label">
+            Chamar no WhatsApp
+          </span>
+
+          <span
+            class="icon-badge icon-badge--whatsapp"
+            aria-hidden="true"
+          >
+            <img
+              src="./assets/seta-1.svg"
+              alt=""
+            />
+          </span>
+        </a>
+
+
+        <!-- Instagram -->
+        <a
+          class="link-button"
+          href="https://www.instagram.com/med_carservice/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Acessar Instagram da Med Car Service"
+        >
+          <span class="link-label">
+            Acesse nosso Instagram
+          </span>
+
+          <span
+            class="icon-badge icon-badge--instagram"
+            aria-hidden="true"
+          >
+            <img
+              src="./assets/instagram.svg"
+              alt=""
+            />
+          </span>
+        </a>
+
+
+        <!-- Google Meu Negócio -->
+        <a
+          class="link-button"
+          href="https://share.google/SekliRruxTokvnrDB"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Ver a Med Car Service no Google"
+        >
+          <span class="link-label">
+            Veja nossa localização no Google
+          </span>
+
+          <span
+            class="icon-badge icon-badge--google"
+            aria-hidden="true"
+          >
+
+            <!-- Ícone de localização -->
+            <svg
+              viewBox="0 0 24 24"
+              focusable="false"
+            >
+              <path
+                d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"
+              />
+            </svg>
+
+          </span>
+        </a>
+
+      </nav>
+
+
+      <!-- Endereço -->
+      <a
+        class="address"
+        href="https://share.google/SekliRruxTokvnrDB"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <!-- Ícone de localização -->
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"
+          />
+        </svg>
+
+        <span>
+          Av. Fagundes de Oliveira, 223 - Piraporinha, Diadema - SP
+        </span>
+
+      </a>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
