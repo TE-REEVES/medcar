@@ -323,7 +323,7 @@ h1 {
 }
 
 
-/* SVG de localização */
+/* SVGs dentro dos círculos */
 .icon-badge svg {
   width: 24px;
   height: 24px;
@@ -346,7 +346,7 @@ h1 {
 }
 
 
-/* Botão Google */
+/* Botão Google / avaliações */
 .icon-badge--google {
   background: #4285F4;
   color: var(--white);
@@ -358,20 +358,29 @@ h1 {
    ========================================================= */
 
 .address {
-  width: fit-content;
-  max-width: 100%;
+  /*
+    O endereço ocupa a largura disponível,
+    mas fica limitado para não quebrar
+    a estética da composição.
+  */
+  width: 100%;
+  max-width: 460px;
 
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 
-  gap: 12px;
+  gap: 10px;
 
   margin-top: clamp(48px, 7vh, 72px);
+  margin-left: auto;
+  margin-right: auto;
 
   color: var(--white);
 
   text-decoration: none;
+
+  text-align: center;
 
   font-size: clamp(0.95rem, 2vw, 1.08rem);
   font-weight: 650;
@@ -382,12 +391,21 @@ h1 {
 }
 
 
+/*
+  Limita a largura do texto para manter
+  o endereço visualmente compacto.
+*/
+.address span {
+  max-width: 390px;
+}
+
+
 /* Ícone do endereço */
 .address svg {
-  flex: 0 0 24px;
+  flex: 0 0 22px;
 
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
 
   fill: currentColor;
 }
@@ -489,13 +507,28 @@ h1 {
   }
 
 
+  /*
+    No mobile o endereço continua centralizado,
+    porém com largura menor para quebrar
+    as linhas de maneira mais elegante.
+  */
   .address {
     margin-top: 38px;
 
-  align-items: center;
-  justify-content: center;
+    width: 100%;
+    max-width: 320px;
 
-  text-align: center;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    font-size: 0.95rem;
+  }
+
+
+  .address span {
+    max-width: 270px;
   }
 
 }
@@ -522,7 +555,14 @@ h1 {
 
 
   .address {
+    max-width: 290px;
+
     font-size: 0.9rem;
+  }
+
+
+  .address span {
+    max-width: 245px;
   }
 
 }
