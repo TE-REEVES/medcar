@@ -348,7 +348,7 @@ h1 {
 
 /* Botão Google */
 .icon-badge--google {
-  background: var(--red);
+  background: #4285F4;
   color: var(--white);
 }
 
