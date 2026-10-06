@@ -91,9 +91,9 @@ a {
     linear-gradient(
       90deg,
       rgba(10, 10, 10, 0.94) 0%,
-      rgba(10, 10, 10, 0.68) 22%,
-      rgba(10, 10, 10, 0.50) 50%,
-      rgba(10, 10, 10, 0.68) 78%,
+      rgba(10, 10, 10, 0.94) 22%,
+      rgba(10, 10, 10, 0.94) 50%,
+      rgba(10, 10, 10, 0.94) 78%,
       rgba(10, 10, 10, 0.94) 100%
     ),
     url("./assets/cliov6.webp") center center / cover no-repeat;
