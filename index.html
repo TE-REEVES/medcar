@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
 
-  <!-- Faz o layout se adaptar corretamente em celulares e tablets -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Responsividade -->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
   <!-- SEO básico -->
   <title>Med Car Service | Central de links</title>
 
   <meta
     name="description"
-    content="Central de links da Med Car Service. Entre em contato pelo WhatsApp, acesse o Instagram ou encontre a empresa no Google."
+    content="Central de links da Med Car Service. Entre em contato pelo WhatsApp, acesse o Instagram ou avalie a empresa no Google."
   />
 
-  <meta name="theme-color" content="#0A0A0A" />
+  <meta
+    name="theme-color"
+    content="#0A0A0A"
+  />
 
-  <!-- Google Fonts: Atkinson Hyperlegible Next -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Google Fonts -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
 
   <link
     href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&display=swap"
@@ -26,47 +41,74 @@
   />
 
   <!-- CSS principal -->
-  <link rel="stylesheet" href="./style.css" />
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  />
 </head>
+
 
 <body>
 
-  <!--
-    Estrutura principal da página.
-    O background com o carro fica configurado pelo CSS.
-  -->
+  <!-- =====================================================
+       ESTRUTURA PRINCIPAL
+       ===================================================== -->
+
   <main class="page-shell">
 
-    <!-- Camada de sombra + glow vermelho -->
-    <div class="background-overlay" aria-hidden="true"></div>
+    <!-- Glow / tratamento de fundo -->
+    <div
+      class="background-overlay"
+      aria-hidden="true"
+    ></div>
 
-    <!-- Conteúdo central -->
-    <section class="link-card" aria-labelledby="page-title">
+
+    <!-- ===================================================
+         CONTEÚDO CENTRAL
+         =================================================== -->
+
+    <section
+      class="link-card"
+      aria-labelledby="page-title"
+    >
+
 
       <!-- Texto superior -->
       <p class="eyebrow">
         Central de links
       </p>
 
-      <!-- Logo -->
+
+      <!-- =================================================
+           LOGO
+           ================================================= -->
+
       <div class="brand-mark">
+
         <img
           src="./assets/logoicon.png"
           alt="Logo Med Car Service"
           class="brand-logo"
         />
+
       </div>
+
 
       <!-- Nome da empresa -->
       <h1 id="page-title">
         Med Car Service
       </h1>
 
-      <!-- Links principais -->
+
+      <!-- =================================================
+           LINKS PRINCIPAIS
+           ================================================= -->
+
       <nav
         class="links"
         aria-label="Links principais da Med Car Service"
       >
+
 
         <!-- WhatsApp -->
         <a
@@ -76,6 +118,7 @@
           rel="noopener noreferrer"
           aria-label="Chamar a Med Car Service no WhatsApp"
         >
+
           <span class="link-label">
             Chamar no WhatsApp
           </span>
@@ -84,11 +127,14 @@
             class="icon-badge icon-badge--whatsapp"
             aria-hidden="true"
           >
+
             <img
               src="./assets/seta-1.svg"
               alt=""
             />
+
           </span>
+
         </a>
 
 
@@ -100,6 +146,7 @@
           rel="noopener noreferrer"
           aria-label="Acessar Instagram da Med Car Service"
         >
+
           <span class="link-label">
             Acesse nosso Instagram
           </span>
@@ -108,15 +155,21 @@
             class="icon-badge icon-badge--instagram"
             aria-hidden="true"
           >
+
             <img
               src="./assets/instagram.svg"
               alt=""
             />
+
           </span>
+
         </a>
 
 
-        <!-- Google Meu Negócio -->
+        <!-- =================================================
+             GOOGLE / AVALIAÇÕES
+             ================================================= -->
+
         <a
           class="link-button"
           href="https://search.google.com/local/writereview?placeid=ChIJLSdbE1hDzpQRRysI6oH1tPs"
@@ -124,37 +177,84 @@
           rel="noopener noreferrer"
           aria-label="Nos avalie no Google"
         >
+
           <span class="link-label">
             Nos avalie no Google
           </span>
 
+
+          <!-- Círculo azul -->
           <span
             class="icon-badge icon-badge--google"
             aria-hidden="true"
           >
 
-            <!-- Ícone de avaliação -->
+            <!-- Estrela -->
+            <svg
+              viewBox="0 0 96 91"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+
+              <path
+                d="M47.5529 0L58.7786 34.5491H95.1057L65.7164 55.9017L76.9421 90.4509L47.5529 69.0983L18.1636 90.4509L29.3893 55.9017L3.05176e-05 34.5491H36.3272L47.5529 0Z"
+                fill="#FFC800"
+              />
+
+            </svg>
+
+          </span>
+
+        </a>
+
+      </nav>
 
 
-  <svg
-    viewBox="0 0 96 91"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M47.5529 0L58.7786 34.5491H95.1057L65.7164 55.9017L76.9421 90.4509L47.5529 69.0983L18.1636 90.4509L29.3893 55.9017L3.05176e-05 34.5491H36.3272L47.5529 0Z"
-      fill="#FFC800"
-    />
-  </svg>
+      <!-- =================================================
+           FEED DO INSTAGRAM
+           ================================================= -->
 
-</span>
+      <section
+        class="instagram-section"
+        aria-labelledby="instagram-title"
+      >
+
+        <!-- Cabeçalho -->
+        <div class="instagram-section__header">
+
+          <span class="instagram-section__eyebrow">
+            Acompanhe nosso trabalho
+          </span>
+
+          <h2 id="instagram-title">
+            Últimas publicações
+          </h2>
+
+        </div>
 
 
-      <!-- Endereço -->
+        <!-- Widget SociableKIT -->
+        <div class="instagram-widget">
+
+          <div
+            class="sk-instagram-feed"
+            data-embed-id="25721862"
+          ></div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           ENDEREÇO
+           ================================================= -->
+
       <a
         class="address"
         href="https://share.google/SekliRruxTokvnrDB"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Abrir localização da Med Car Service no Google"
       >
 
         <!-- Ícone de localização -->
@@ -162,10 +262,13 @@
           viewBox="0 0 24 24"
           aria-hidden="true"
         >
+
           <path
             d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"
           />
+
         </svg>
+
 
         <span>
           Av. Fagundes de Oliveira, 223 - Piraporinha, Diadema - SP
@@ -173,9 +276,21 @@
 
       </a>
 
+
     </section>
 
   </main>
 
+
+  <!-- =====================================================
+       SOCIABLEKIT — FEED DO INSTAGRAM
+       ===================================================== -->
+
+  <script
+    src="https://widgets.sociablekit.com/instagram-feed/widget.js"
+    defer
+  ></script>
+
 </body>
+
 </html>

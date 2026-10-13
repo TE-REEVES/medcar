@@ -13,16 +13,23 @@
   --green: #00E204;
   --pink: #FE4574;
 
+  --google-blue: #4285F4;
+
   --white: #FFFFFF;
   --soft-white: #F7F7F7;
 
-  --font-main: "Atkinson Hyperlegible Next", system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-main:
+    "Atkinson Hyperlegible Next",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 
-  /* Largura máxima da área central */
+  /* Largura máxima do conteúdo */
   --content-width: 520px;
 
-  /* Espaçamento lateral responsivo */
+  /* Espaçamento horizontal responsivo */
   --page-padding: clamp(18px, 4vw, 36px);
 }
 
@@ -37,24 +44,42 @@
   box-sizing: border-box;
 }
 
+
 html {
   min-height: 100%;
+
   background: var(--black);
+
+  /*
+    Evita pequenos movimentos laterais
+    causados por embeds externos.
+  */
+  overflow-x: hidden;
 }
+
 
 body {
   margin: 0;
+
   min-height: 100%;
+
   font-family: var(--font-main);
+
   color: var(--white);
+
   background: var(--black);
+
+  overflow-x: hidden;
 }
+
 
 img,
 svg {
   display: block;
+
   max-width: 100%;
 }
+
 
 a {
   color: inherit;
@@ -68,7 +93,6 @@ a {
 .page-shell {
   position: relative;
 
-  /* Ocupa 100% da altura da tela */
   min-height: 100vh;
   min-height: 100dvh;
 
@@ -78,15 +102,43 @@ a {
   padding:
     max(28px, env(safe-area-inset-top))
     var(--page-padding)
-    max(28px, env(safe-area-inset-bottom));
-
-  overflow: hidden;
+    max(40px, env(safe-area-inset-bottom));
 
   /*
-    Fundo:
-    1. Gradiente preto para escurecer as laterais
-    2. Imagem do carro
+    Permitimos rolagem vertical agora que
+    a página possui feed do Instagram.
   */
+  overflow-x: hidden;
+
+  background: var(--black);
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   4. BACKGROUND FIXO
+   ========================================================= */
+
+/*
+  O background fica preso ao viewport.
+
+  Isso evita que a imagem do carro seja
+  deformada ou excessivamente ampliada
+  quando o feed deixa a página mais alta.
+*/
+
+.page-shell::before {
+  content: "";
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: -2;
+
+  pointer-events: none;
+
   background:
     linear-gradient(
       90deg,
@@ -96,22 +148,26 @@ a {
       rgba(10, 10, 10, 0.94) 78%,
       rgba(10, 10, 10, 0.94) 100%
     ),
-    url("./assets/cliov6.webp") center center / cover no-repeat;
+    url("./assets/cliov6.webp")
+    center center / cover no-repeat;
 }
 
 
 /* =========================================================
-   4. OVERLAY VERMELHO
+   5. OVERLAY VERMELHO
    ========================================================= */
 
 /*
-  Essa camada cria o glow vermelho central
-  parecido com o design de referência.
+  Glow vermelho central semelhante
+  à identidade visual da Med Car.
 */
 
 .background-overlay {
-  position: absolute;
+  position: fixed;
+
   inset: 0;
+
+  z-index: -1;
 
   pointer-events: none;
 
@@ -128,11 +184,12 @@ a {
 
 
 /* =========================================================
-   5. CONTEÚDO CENTRAL
+   6. CONTEÚDO CENTRAL
    ========================================================= */
 
 .link-card {
   position: relative;
+
   z-index: 1;
 
   width: min(100%, var(--content-width));
@@ -147,42 +204,44 @@ a {
 
 /* Texto superior */
 .eyebrow {
-  margin: 0 0 clamp(18px, 3vh, 28px);
+  margin:
+    0
+    0
+    clamp(18px, 3vh, 28px);
 
-  font-size: clamp(1rem, 2vw, 1.18rem);
+  font-size:
+    clamp(1rem, 2vw, 1.18rem);
+
   font-weight: 400;
+
   letter-spacing: -0.01em;
 }
 
 
 /* =========================================================
-   6. LOGO
+   7. LOGO
    ========================================================= */
 
 .brand-mark {
-  width: clamp(112px, 18vw, 145px);
+  width:
+    clamp(112px, 18vw, 145px);
 
-  /*
-    Mantém a proporção vertical parecida
-    com o símbolo da marca.
-  */
   aspect-ratio: 0.78;
 
   display: grid;
+
   place-items: center;
 
-  margin-bottom: clamp(24px, 4vh, 38px);
+  margin-bottom:
+    clamp(24px, 4vh, 38px);
 
   background: var(--black);
 
-  /*
-    Formato arredondado semelhante
-    ao fundo do logo no layout.
-  */
   border-radius: 42% / 32%;
 
   overflow: hidden;
 }
+
 
 .brand-logo {
   width: 93%;
@@ -193,16 +252,22 @@ a {
 
 
 /* =========================================================
-   7. TÍTULO
+   8. TÍTULO PRINCIPAL
    ========================================================= */
 
 h1 {
-  margin: 0 0 clamp(32px, 5vh, 48px);
+  margin:
+    0
+    0
+    clamp(32px, 5vh, 48px);
 
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size:
+    clamp(2rem, 5vw, 3rem);
+
   line-height: 0.98;
 
   font-weight: 800;
+
   letter-spacing: -0.035em;
 
   text-transform: uppercase;
@@ -210,7 +275,7 @@ h1 {
 
 
 /* =========================================================
-   8. ÁREA DOS BOTÕES
+   9. ÁREA DOS BOTÕES
    ========================================================= */
 
 .links {
@@ -222,31 +287,44 @@ h1 {
 }
 
 
-/* Botão principal */
+/* =========================================================
+   10. BOTÕES
+   ========================================================= */
+
 .link-button {
   position: relative;
 
   width: 100%;
+
   min-height: 58px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   /*
-    Deixamos espaço à direita
+    Espaço reservado à direita
     para o ícone circular.
   */
-  padding: 14px 72px 14px 24px;
+  padding:
+    14px
+    72px
+    14px
+    24px;
 
   border-radius: 999px;
 
-  background: rgba(255, 255, 255, 0.96);
+  background:
+    rgba(255, 255, 255, 0.96);
+
   color: var(--black);
 
   text-decoration: none;
 
-  font-size: clamp(1rem, 2vw, 1.12rem);
+  font-size:
+    clamp(1rem, 2vw, 1.12rem);
+
   font-weight: 720;
 
   box-shadow:
@@ -260,11 +338,13 @@ h1 {
 }
 
 
-/* Efeito ao passar o mouse */
+/* Hover */
 .link-button:hover {
-  transform: translateY(-2px);
+  transform:
+    translateY(-2px);
 
-  background: var(--white);
+  background:
+    var(--white);
 
   box-shadow:
     0 16px 38px rgba(0, 0, 0, 0.26),
@@ -272,28 +352,33 @@ h1 {
 }
 
 
-/* Efeito ao clicar */
+/* Clique */
 .link-button:active {
-  transform: translateY(0);
+  transform:
+    translateY(0);
 }
 
 
-/* Foco para navegação por teclado */
+/* Navegação por teclado */
 .link-button:focus-visible,
 .address:focus-visible {
-  outline: 3px solid var(--white);
-  outline-offset: 4px;
+  outline:
+    3px solid var(--white);
+
+  outline-offset:
+    4px;
 }
 
 
-/* Texto do botão */
+/* Texto */
 .link-label {
-  line-height: 1.15;
+  line-height:
+    1.15;
 }
 
 
 /* =========================================================
-   9. ÍCONES CIRCULARES
+   11. ÍCONES CIRCULARES
    ========================================================= */
 
 .icon-badge {
@@ -305,6 +390,7 @@ h1 {
   height: 50px;
 
   display: grid;
+
   place-items: center;
 
   border-radius: 999px;
@@ -314,7 +400,7 @@ h1 {
 }
 
 
-/* Imagens dentro dos círculos */
+/* Imagens */
 .icon-badge img {
   width: 25px;
   height: 25px;
@@ -323,7 +409,7 @@ h1 {
 }
 
 
-/* SVG de localização */
+/* SVGs */
 .icon-badge svg {
   width: 24px;
   height: 24px;
@@ -332,262 +418,542 @@ h1 {
 }
 
 
-/* Botão WhatsApp */
+/* WhatsApp */
 .icon-badge--whatsapp {
-  background: var(--green);
-  color: var(--white);
+  background:
+    var(--green);
+
+  color:
+    var(--white);
 }
 
 
-/* Botão Instagram */
+/* Instagram */
 .icon-badge--instagram {
-  background: var(--pink);
-  color: var(--white);
+  background:
+    var(--pink);
+
+  color:
+    var(--white);
 }
 
 
-/* Botão Google */
+/* Google / avaliações */
 .icon-badge--google {
-  background: var(--red);
-  color: var(--white);
+  background:
+    var(--google-blue);
+
+  color:
+    var(--white);
+}
+
+
+/*
+  A estrela possui sua própria cor
+  definida no HTML (#FFC800).
+
+  Portanto ela não depende
+  do currentColor.
+*/
+.icon-badge--google svg {
+  width: 24px;
+  height: 24px;
 }
 
 
 /* =========================================================
-   10. ENDEREÇO
+   12. FEED DO INSTAGRAM
+   ========================================================= */
+
+.instagram-section {
+  width: 100%;
+
+  margin-top:
+    clamp(52px, 8vh, 78px);
+
+  text-align: center;
+}
+
+
+/* Cabeçalho */
+.instagram-section__header {
+  margin-bottom:
+    24px;
+}
+
+
+/* Texto pequeno */
+.instagram-section__eyebrow {
+  display: block;
+
+  margin-bottom:
+    7px;
+
+  font-size:
+    0.92rem;
+
+  font-weight:
+    500;
+
+  letter-spacing:
+    0.01em;
+
+  color:
+    rgba(255, 255, 255, 0.66);
+}
+
+
+/* Título da seção */
+.instagram-section h2 {
+  margin: 0;
+
+  font-size:
+    clamp(1.4rem, 3vw, 1.8rem);
+
+  line-height:
+    1.1;
+
+  font-weight:
+    750;
+
+  letter-spacing:
+    -0.025em;
+
+  color:
+    var(--white);
+}
+
+
+/* Container externo do widget */
+.instagram-widget {
+  width: 100%;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+}
+
+
+/*
+  Garante que o componente externo
+  não ultrapasse a largura da página.
+*/
+.sk-instagram-feed {
+  width: 100%;
+
+  max-width: 100%;
+}
+
+
+/* =========================================================
+   13. ENDEREÇO
    ========================================================= */
 
 .address {
-  width: fit-content;
-  max-width: 100%;
+  /*
+    O bloco fica centralizado em todas
+    as resoluções, mas com largura controlada
+    para preservar a estética.
+  */
 
-  display: inline-flex;
+  width: 100%;
+
+  max-width: 460px;
+
+  display: flex;
+
   align-items: center;
   justify-content: center;
 
-  gap: 12px;
+  gap: 10px;
 
-  margin-top: clamp(48px, 7vh, 72px);
+  margin-top:
+    clamp(48px, 7vh, 72px);
 
-  color: var(--white);
+  margin-left: auto;
+  margin-right: auto;
 
-  text-decoration: none;
+  padding: 0 8px;
 
-  font-size: clamp(0.95rem, 2vw, 1.08rem);
-  font-weight: 650;
-  line-height: 1.35;
+  color:
+    var(--white);
+
+  text-decoration:
+    none;
+
+  text-align:
+    center;
+
+  font-size:
+    clamp(0.95rem, 2vw, 1.08rem);
+
+  font-weight:
+    650;
+
+  line-height:
+    1.35;
 
   text-shadow:
     0 2px 12px rgba(0, 0, 0, 0.48);
 }
 
 
-/* Ícone do endereço */
-.address svg {
-  flex: 0 0 24px;
-
-  width: 24px;
-  height: 24px;
-
-  fill: currentColor;
+/*
+  Limita a largura do texto
+  para manter a composição compacta.
+*/
+.address span {
+  max-width: 390px;
 }
 
 
-/* Hover no endereço */
+/* Ícone */
+.address svg {
+  flex:
+    0 0 22px;
+
+  width:
+    22px;
+
+  height:
+    22px;
+
+  fill:
+    currentColor;
+}
+
+
+/* Hover */
 .address:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration:
+    underline;
+
+  text-underline-offset:
+    4px;
 }
 
 
 /* =========================================================
-   11. TABLETS
+   14. TABLETS
    ========================================================= */
 
 @media (max-width: 768px) {
 
-  .page-shell {
-    /*
-      Ajusta o enquadramento da foto
-      para telas menores.
-    */
-    background-position: 56% center;
+  /*
+    Ajuste de enquadramento
+    para telas mais estreitas.
+  */
+
+  .page-shell::before {
+    background-position:
+      56% center;
   }
 
+
   .link-card {
-    width: min(100%, 500px);
+    width:
+      min(100%, 500px);
+  }
+
+
+  .instagram-section {
+    margin-top:
+      52px;
   }
 
 }
 
 
 /* =========================================================
-   12. CELULARES
+   15. CELULARES
    ========================================================= */
 
 @media (max-width: 520px) {
 
   .page-shell {
     /*
-      Em celulares deixamos o conteúdo
-      começar mais próximo do topo.
+      Como agora a página possui conteúdo
+      maior que uma tela, começamos pelo topo.
     */
-    place-items: start center;
+    place-items:
+      start center;
 
     padding-top:
       max(34px, env(safe-area-inset-top));
 
     padding-bottom:
       max(34px, env(safe-area-inset-bottom));
-
-    /*
-      Move um pouco o enquadramento
-      do carro para melhorar o background.
-    */
-    background-position: 58% center;
   }
 
 
+  /*
+    Melhor enquadramento
+    do carro no mobile.
+  */
+  .page-shell::before {
+    background-position:
+      58% center;
+  }
+
+
+  /* Texto superior */
   .eyebrow {
-    margin-bottom: 16px;
+    margin-bottom:
+      16px;
   }
 
 
+  /* Logo */
   .brand-mark {
-    width: 104px;
+    width:
+      104px;
 
-    margin-bottom: 22px;
+    margin-bottom:
+      22px;
   }
 
 
+  /* Título */
   h1 {
-    margin-bottom: 28px;
+    margin-bottom:
+      28px;
 
     font-size:
       clamp(1.9rem, 9vw, 2.55rem);
   }
 
 
+  /* Botões */
   .links {
-    gap: 12px;
+    gap:
+      12px;
   }
 
 
   .link-button {
-    min-height: 56px;
+    min-height:
+      56px;
 
-    padding-left: 18px;
-    padding-right: 66px;
+    padding-left:
+      18px;
 
-    font-size: 1rem;
+    padding-right:
+      66px;
+
+    font-size:
+      1rem;
   }
 
 
+  /* Ícones */
   .icon-badge {
-    width: 48px;
-    height: 48px;
+    width:
+      48px;
+
+    height:
+      48px;
   }
 
 
+  /* Feed Instagram */
+  .instagram-section {
+    margin-top:
+      46px;
+  }
+
+
+  .instagram-section__header {
+    margin-bottom:
+      18px;
+  }
+
+
+  .instagram-section__eyebrow {
+    font-size:
+      0.88rem;
+  }
+
+
+  .instagram-section h2 {
+    font-size:
+      1.45rem;
+  }
+
+
+  .instagram-widget {
+    border-radius:
+      16px;
+  }
+
+
+  /* Endereço */
   .address {
-    margin-top: 38px;
+    width:
+      100%;
 
-    align-items: flex-start;
+    max-width:
+      320px;
 
-    text-align: left;
+    margin-top:
+      38px;
+
+    align-items:
+      center;
+
+    justify-content:
+      center;
+
+    text-align:
+      center;
+
+    font-size:
+      0.95rem;
+  }
+
+
+  .address span {
+    max-width:
+      270px;
   }
 
 }
 
 
 /* =========================================================
-   13. CELULARES MUITO PEQUENOS
+   16. CELULARES MUITO PEQUENOS
    ========================================================= */
 
 @media (max-width: 360px) {
 
   .link-button {
-    padding-left: 16px;
-    padding-right: 62px;
+    padding-left:
+      16px;
 
-    font-size: 0.94rem;
+    padding-right:
+      62px;
+
+    font-size:
+      0.94rem;
   }
 
 
   .icon-badge {
-    width: 46px;
-    height: 46px;
+    width:
+      46px;
+
+    height:
+      46px;
+  }
+
+
+  .instagram-section h2 {
+    font-size:
+      1.35rem;
   }
 
 
   .address {
-    font-size: 0.9rem;
+    max-width:
+      290px;
+
+    font-size:
+      0.9rem;
+  }
+
+
+  .address span {
+    max-width:
+      245px;
   }
 
 }
 
 
 /* =========================================================
-   14. CELULAR DEITADO / TELAS BAIXAS
+   17. CELULAR DEITADO / TELAS BAIXAS
    ========================================================= */
 
 @media (max-height: 680px) and (orientation: landscape) {
 
   .page-shell {
-    padding-top: 24px;
-    padding-bottom: 24px;
+    place-items:
+      start center;
+
+    padding-top:
+      24px;
+
+    padding-bottom:
+      24px;
   }
 
 
   .eyebrow {
-    margin-bottom: 12px;
+    margin-bottom:
+      12px;
   }
 
 
   .brand-mark {
-    width: 88px;
+    width:
+      88px;
 
-    margin-bottom: 16px;
+    margin-bottom:
+      16px;
   }
 
 
   h1 {
-    margin-bottom: 22px;
+    margin-bottom:
+      22px;
 
-    font-size: 2rem;
+    font-size:
+      2rem;
   }
 
 
   .links {
-    gap: 10px;
+    gap:
+      10px;
   }
 
 
   .link-button {
-    min-height: 50px;
+    min-height:
+      50px;
   }
 
 
   .icon-badge {
-    width: 44px;
-    height: 44px;
+    width:
+      44px;
+
+    height:
+      44px;
+  }
+
+
+  .instagram-section {
+    margin-top:
+      38px;
   }
 
 
   .address {
-    margin-top: 24px;
+    margin-top:
+      28px;
   }
 
 }
 
 
 /* =========================================================
-   15. ACESSIBILIDADE
+   18. ACESSIBILIDADE
    ========================================================= */
 
 /*
-  Se o usuário tiver configurado o dispositivo
-  para reduzir animações, removemos transitions.
+  Remove animações caso o usuário
+  tenha solicitado redução de movimento
+  no próprio dispositivo.
 */
 
 @media (prefers-reduced-motion: reduce) {
@@ -595,8 +961,11 @@ h1 {
   *,
   *::before,
   *::after {
-    scroll-behavior: auto !important;
-    transition: none !important;
+    scroll-behavior:
+      auto !important;
+
+    transition:
+      none !important;
   }
 
 }
