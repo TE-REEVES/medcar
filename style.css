@@ -4,19 +4,27 @@
 
 
 /* =========================================================
-   1. CORES E VARIÁVEIS GERAIS
+   1. CORES E VARIÁVEIS
    ========================================================= */
 
 :root {
+
   --red: #D03B3B;
+
   --black: #0A0A0A;
+
   --green: #00E204;
+
   --pink: #FE4574;
 
   --google-blue: #4285F4;
 
+  --pix-color: #D03B3B;
+
   --white: #FFFFFF;
+
   --soft-white: #F7F7F7;
+
 
   --font-main:
     "Atkinson Hyperlegible Next",
@@ -26,946 +34,1770 @@
     "Segoe UI",
     sans-serif;
 
-  /* Largura máxima do conteúdo */
+
+  /* Botões */
   --content-width: 520px;
 
-  /* Espaçamento horizontal responsivo */
-  --page-padding: clamp(18px, 4vw, 36px);
+
+  /* Feed */
+  --feed-width: 680px;
+
+
+  /* Padding geral */
+  --page-padding:
+    clamp(18px, 4vw, 36px);
+
 }
 
 
 /* =========================================================
-   2. RESET BÁSICO
+   2. RESET
    ========================================================= */
 
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+
+  box-sizing:
+    border-box;
+
 }
 
 
 html {
-  min-height: 100%;
 
-  background: var(--black);
+  min-height:
+    100%;
 
-  /*
-    Evita pequenos movimentos laterais
-    causados por embeds externos.
-  */
-  overflow-x: hidden;
+  background:
+    var(--black);
+
+  overflow-x:
+    hidden;
+
 }
 
 
 body {
-  margin: 0;
 
-  min-height: 100%;
+  margin:
+    0;
 
-  font-family: var(--font-main);
+  min-height:
+    100%;
 
-  color: var(--white);
+  font-family:
+    var(--font-main);
 
-  background: var(--black);
+  color:
+    var(--white);
 
-  overflow-x: hidden;
+  background:
+    var(--black);
+
+  overflow-x:
+    hidden;
+
 }
 
 
 img,
 svg {
-  display: block;
 
-  max-width: 100%;
+  display:
+    block;
+
+  max-width:
+    100%;
+
 }
 
 
 a {
-  color: inherit;
+
+  color:
+    inherit;
+
+}
+
+
+button {
+
+  font:
+    inherit;
+
 }
 
 
 /* =========================================================
-   3. ESTRUTURA PRINCIPAL
+   3. PÁGINA
    ========================================================= */
 
 .page-shell {
-  position: relative;
 
-  min-height: 100vh;
-  min-height: 100dvh;
+  position:
+    relative;
 
-  display: grid;
-  place-items: center;
+  min-height:
+    100vh;
+
+  min-height:
+    100dvh;
+
 
   padding:
-    max(28px, env(safe-area-inset-top))
+
+    max(
+      28px,
+      env(safe-area-inset-top)
+    )
+
     var(--page-padding)
-    max(40px, env(safe-area-inset-bottom));
 
-  /*
-    Permitimos rolagem vertical agora que
-    a página possui feed do Instagram.
-  */
-  overflow-x: hidden;
+    max(
+      44px,
+      env(safe-area-inset-bottom)
+    );
 
-  background: var(--black);
 
-  isolation: isolate;
+  overflow-x:
+    hidden;
+
+
+  background:
+    var(--black);
+
+
+  isolation:
+    isolate;
+
 }
 
 
 /* =========================================================
-   4. BACKGROUND FIXO
+   4. BACKGROUND
    ========================================================= */
-
-/*
-  O background fica preso ao viewport.
-
-  Isso evita que a imagem do carro seja
-  deformada ou excessivamente ampliada
-  quando o feed deixa a página mais alta.
-*/
 
 .page-shell::before {
-  content: "";
 
-  position: fixed;
+  content:
+    "";
 
-  inset: 0;
 
-  z-index: -2;
+  position:
+    fixed;
 
-  pointer-events: none;
+
+  inset:
+    0;
+
+
+  z-index:
+    -2;
+
+
+  pointer-events:
+    none;
+
 
   background:
+
     linear-gradient(
+
       90deg,
+
       rgba(10, 10, 10, 0.94) 0%,
+
       rgba(10, 10, 10, 0.94) 22%,
+
       rgba(10, 10, 10, 0.94) 50%,
+
       rgba(10, 10, 10, 0.94) 78%,
+
       rgba(10, 10, 10, 0.94) 100%
+
     ),
+
     url("./assets/cliov6.webp")
-    center center / cover no-repeat;
+    center center /
+    cover
+    no-repeat;
+
 }
 
 
 /* =========================================================
-   5. OVERLAY VERMELHO
+   5. OVERLAY
    ========================================================= */
 
-/*
-  Glow vermelho central semelhante
-  à identidade visual da Med Car.
-*/
-
 .background-overlay {
-  position: fixed;
 
-  inset: 0;
+  position:
+    fixed;
 
-  z-index: -1;
 
-  pointer-events: none;
+  inset:
+    0;
+
+
+  z-index:
+    -1;
+
+
+  pointer-events:
+    none;
+
 
   background:
+
     radial-gradient(
+
       circle at center,
-      rgba(208, 59, 59, 0.45) 0%,
-      rgba(208, 59, 59, 0.30) 18%,
-      rgba(208, 59, 59, 0.16) 38%,
-      rgba(10, 10, 10, 0.20) 58%,
-      rgba(10, 10, 10, 0.55) 100%
+
+      rgba(208, 59, 59, 0.45)
+      0%,
+
+      rgba(208, 59, 59, 0.30)
+      18%,
+
+      rgba(208, 59, 59, 0.16)
+      38%,
+
+      rgba(10, 10, 10, 0.20)
+      58%,
+
+      rgba(10, 10, 10, 0.55)
+      100%
+
     );
+
 }
 
 
 /* =========================================================
-   6. CONTEÚDO CENTRAL
+   6. WRAPPER GERAL
+   ========================================================= */
+
+.content-wrapper {
+
+  width:
+    100%;
+
+
+  display:
+    flex;
+
+
+  flex-direction:
+    column;
+
+
+  align-items:
+    center;
+
+
+  margin:
+    0 auto;
+
+}
+
+
+/* =========================================================
+   7. BLOCO PRINCIPAL
    ========================================================= */
 
 .link-card {
-  position: relative;
 
-  z-index: 1;
-
-  width: min(100%, var(--content-width));
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  text-align: center;
-}
+  width:
+    min(
+      100%,
+      var(--content-width)
+    );
 
 
-/* Texto superior */
-.eyebrow {
-  margin:
-    0
-    0
-    clamp(18px, 3vh, 28px);
+  display:
+    flex;
 
-  font-size:
-    clamp(1rem, 2vw, 1.18rem);
 
-  font-weight: 400;
+  flex-direction:
+    column;
 
-  letter-spacing: -0.01em;
+
+  align-items:
+    center;
+
+
+  text-align:
+    center;
+
 }
 
 
 /* =========================================================
-   7. LOGO
+   8. EYEBROW
+   ========================================================= */
+
+.eyebrow {
+
+  margin:
+
+    0
+
+    0
+
+    clamp(
+      18px,
+      3vh,
+      28px
+    );
+
+
+  font-size:
+    clamp(
+      1rem,
+      2vw,
+      1.18rem
+    );
+
+
+  font-weight:
+    400;
+
+
+  letter-spacing:
+    -0.01em;
+
+}
+
+
+/* =========================================================
+   9. LOGO
    ========================================================= */
 
 .brand-mark {
+
   width:
-    clamp(112px, 18vw, 145px);
+    clamp(
+      112px,
+      18vw,
+      145px
+    );
 
-  aspect-ratio: 0.78;
 
-  display: grid;
+  aspect-ratio:
+    0.78;
 
-  place-items: center;
+
+  display:
+    grid;
+
+
+  place-items:
+    center;
+
 
   margin-bottom:
-    clamp(24px, 4vh, 38px);
+    clamp(
+      24px,
+      4vh,
+      38px
+    );
 
-  background: var(--black);
 
-  border-radius: 42% / 32%;
+  background:
+    var(--black);
 
-  overflow: hidden;
+
+  border-radius:
+    42% / 32%;
+
+
+  overflow:
+    hidden;
+
 }
 
 
 .brand-logo {
-  width: 93%;
-  height: 93%;
 
-  object-fit: contain;
+  width:
+    93%;
+
+
+  height:
+    93%;
+
+
+  object-fit:
+    contain;
+
 }
 
 
 /* =========================================================
-   8. TÍTULO PRINCIPAL
+   10. TÍTULO
    ========================================================= */
 
 h1 {
+
   margin:
+
     0
+
     0
-    clamp(32px, 5vh, 48px);
+
+    clamp(
+      32px,
+      5vh,
+      48px
+    );
+
 
   font-size:
-    clamp(2rem, 5vw, 3rem);
+    clamp(
+      2rem,
+      5vw,
+      3rem
+    );
 
-  line-height: 0.98;
 
-  font-weight: 800;
+  line-height:
+    0.98;
 
-  letter-spacing: -0.035em;
 
-  text-transform: uppercase;
+  font-weight:
+    800;
+
+
+  letter-spacing:
+    -0.035em;
+
+
+  text-transform:
+    uppercase;
+
 }
 
 
 /* =========================================================
-   9. ÁREA DOS BOTÕES
+   11. BOTÕES
    ========================================================= */
 
 .links {
-  width: 100%;
 
-  display: grid;
+  width:
+    100%;
 
-  gap: 14px;
+
+  display:
+    grid;
+
+
+  gap:
+    14px;
+
 }
 
 
-/* =========================================================
-   10. BOTÕES
-   ========================================================= */
-
 .link-button {
-  position: relative;
 
-  width: 100%;
+  position:
+    relative;
 
-  min-height: 58px;
 
-  display: flex;
+  width:
+    100%;
 
-  align-items: center;
-  justify-content: center;
 
-  /*
-    Espaço reservado à direita
-    para o ícone circular.
-  */
+  min-height:
+    58px;
+
+
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    center;
+
+
   padding:
-    14px
-    72px
-    14px
-    24px;
 
-  border-radius: 999px;
+    14px
+
+    68px
+
+    14px
+
+    68px;
+
+
+  border:
+    0;
+
+
+  border-radius:
+    999px;
+
 
   background:
-    rgba(255, 255, 255, 0.96);
+    rgba(
+      255,
+      255,
+      255,
+      0.96
+    );
 
-  color: var(--black);
 
-  text-decoration: none;
+  color:
+    var(--black);
+
+
+  text-decoration:
+    none;
+
+
+  cursor:
+    pointer;
+
 
   font-size:
-    clamp(1rem, 2vw, 1.12rem);
+    clamp(
+      0.96rem,
+      2vw,
+      1.08rem
+    );
 
-  font-weight: 720;
+
+  font-weight:
+    720;
+
 
   box-shadow:
-    0 10px 35px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+    0 10px 35px
+    rgba(
+      0,
+      0,
+      0,
+      0.18
+    ),
+
+    inset
+    0
+    1px
+    0
+    rgba(
+      255,
+      255,
+      255,
+      0.7
+    );
+
 
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    background 180ms ease;
+
+    transform
+    180ms
+    ease,
+
+    box-shadow
+    180ms
+    ease,
+
+    background
+    180ms
+    ease;
+
+}
+
+
+/*
+  Impede quebra de texto
+  em qualquer botão.
+*/
+.link-label {
+
+  line-height:
+    1;
+
+
+  white-space:
+    nowrap;
+
+
+  overflow:
+    hidden;
+
+
+  text-overflow:
+    ellipsis;
+
 }
 
 
 /* Hover */
 .link-button:hover {
+
   transform:
     translateY(-2px);
+
 
   background:
     var(--white);
 
+
   box-shadow:
-    0 16px 38px rgba(0, 0, 0, 0.26),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+    0 16px 38px
+    rgba(
+      0,
+      0,
+      0,
+      0.26
+    ),
+
+    inset
+    0
+    1px
+    0
+    rgba(
+      255,
+      255,
+      255,
+      0.8
+    );
+
 }
 
 
-/* Clique */
 .link-button:active {
+
   transform:
     translateY(0);
-}
 
-
-/* Navegação por teclado */
-.link-button:focus-visible,
-.address:focus-visible {
-  outline:
-    3px solid var(--white);
-
-  outline-offset:
-    4px;
-}
-
-
-/* Texto */
-.link-label {
-  line-height:
-    1.15;
 }
 
 
 /* =========================================================
-   11. ÍCONES CIRCULARES
+   12. ÍCONES DOS BOTÕES
    ========================================================= */
 
 .icon-badge {
-  position: absolute;
 
-  right: 4px;
+  position:
+    absolute;
 
-  width: 50px;
-  height: 50px;
 
-  display: grid;
+  right:
+    4px;
 
-  place-items: center;
 
-  border-radius: 999px;
+  width:
+    50px;
+
+
+  height:
+    50px;
+
+
+  display:
+    grid;
+
+
+  place-items:
+    center;
+
+
+  border-radius:
+    999px;
+
 
   box-shadow:
-    0 6px 18px rgba(0, 0, 0, 0.24);
+
+    0
+    6px
+    18px
+    rgba(
+      0,
+      0,
+      0,
+      0.24
+    );
+
 }
 
 
-/* Imagens */
 .icon-badge img {
-  width: 25px;
-  height: 25px;
 
-  object-fit: contain;
+  width:
+    25px;
+
+
+  height:
+    25px;
+
+
+  object-fit:
+    contain;
+
 }
 
 
-/* SVGs */
 .icon-badge svg {
-  width: 24px;
-  height: 24px;
 
-  fill: currentColor;
+  width:
+    24px;
+
+
+  height:
+    24px;
+
+
+  fill:
+    currentColor;
+
 }
 
 
 /* WhatsApp */
 .icon-badge--whatsapp {
+
   background:
     var(--green);
 
+
   color:
     var(--white);
+
 }
 
 
 /* Instagram */
 .icon-badge--instagram {
+
   background:
     var(--pink);
 
+
   color:
     var(--white);
+
 }
 
 
-/* Google / avaliações */
+/* Google */
 .icon-badge--google {
+
   background:
     var(--google-blue);
 
+
   color:
     var(--white);
+
 }
 
 
-/*
-  A estrela possui sua própria cor
-  definida no HTML (#FFC800).
+/* Pix */
+.icon-badge--pix {
 
-  Portanto ela não depende
-  do currentColor.
-*/
-.icon-badge--google svg {
-  width: 24px;
-  height: 24px;
+  background:
+    var(--pix-color);
+
+
+  color:
+    var(--white);
+
 }
 
 
 /* =========================================================
-   12. FEED DO INSTAGRAM
+   13. FEEDBACK PIX
+   ========================================================= */
+
+.copy-feedback {
+
+  margin-top:
+    10px;
+
+
+  height:
+    20px;
+
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.78
+    );
+
+
+  font-size:
+    0.85rem;
+
+
+  font-weight:
+    600;
+
+
+  opacity:
+    0;
+
+
+  transform:
+    translateY(-4px);
+
+
+  pointer-events:
+    none;
+
+
+  transition:
+
+    opacity
+    180ms
+    ease,
+
+    transform
+    180ms
+    ease;
+
+}
+
+
+.copy-feedback.is-visible {
+
+  opacity:
+    1;
+
+
+  transform:
+    translateY(0);
+
+}
+
+
+/* =========================================================
+   14. INSTAGRAM
    ========================================================= */
 
 .instagram-section {
-  width: 100%;
+
+  width:
+    min(
+      100%,
+      var(--feed-width)
+    );
+
 
   margin-top:
-    clamp(52px, 8vh, 78px);
+    clamp(
+      46px,
+      7vh,
+      68px
+    );
 
-  text-align: center;
-}
-
-
-/* Cabeçalho */
-.instagram-section__header {
-  margin-bottom:
-    24px;
-}
-
-
-/* Texto pequeno */
-.instagram-section__eyebrow {
-  display: block;
-
-  margin-bottom:
-    7px;
-
-  font-size:
-    0.92rem;
-
-  font-weight:
-    500;
-
-  letter-spacing:
-    0.01em;
-
-  color:
-    rgba(255, 255, 255, 0.66);
-}
-
-
-/* Título da seção */
-.instagram-section h2 {
-  margin: 0;
-
-  font-size:
-    clamp(1.4rem, 3vw, 1.8rem);
-
-  line-height:
-    1.1;
-
-  font-weight:
-    750;
-
-  letter-spacing:
-    -0.025em;
-
-  color:
-    var(--white);
-}
-
-
-/* Container externo do widget */
-.instagram-widget {
-  width: 100%;
-
-  overflow: hidden;
-
-  border-radius: 20px;
-}
-
-
-/*
-  Garante que o componente externo
-  não ultrapasse a largura da página.
-*/
-.sk-instagram-feed {
-  width: 100%;
-
-  max-width: 100%;
-}
-
-
-/* =========================================================
-   13. ENDEREÇO
-   ========================================================= */
-
-.address {
-  /*
-    O bloco fica centralizado em todas
-    as resoluções, mas com largura controlada
-    para preservar a estética.
-  */
-
-  width: 100%;
-
-  max-width: 460px;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 10px;
-
-  margin-top:
-    clamp(48px, 7vh, 72px);
-
-  margin-left: auto;
-  margin-right: auto;
-
-  padding: 0 8px;
-
-  color:
-    var(--white);
-
-  text-decoration:
-    none;
 
   text-align:
     center;
 
+}
+
+
+/* Título */
+.instagram-section__header {
+
+  margin-bottom:
+    20px;
+
+}
+
+
+.instagram-section__eyebrow {
+
+  display:
+    block;
+
+
+  margin-bottom:
+    6px;
+
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.68
+    );
+
+
   font-size:
-    clamp(0.95rem, 2vw, 1.08rem);
+    0.92rem;
+
 
   font-weight:
-    650;
+    500;
+
+}
+
+
+.instagram-section h2 {
+
+  margin:
+    0;
+
+
+  color:
+    var(--white);
+
+
+  font-size:
+    clamp(
+      1.4rem,
+      3vw,
+      1.8rem
+    );
+
+
+  font-weight:
+    750;
+
 
   line-height:
-    1.35;
+    1.1;
 
-  text-shadow:
-    0 2px 12px rgba(0, 0, 0, 0.48);
+
+  letter-spacing:
+    -0.025em;
+
+}
+
+
+/* =========================================================
+   15. DIV EXCLUSIVA DO FEED
+   ========================================================= */
+
+/*
+  Essa div não pertence ao link-card.
+
+  Dessa forma o widget pode ter
+  largura própria sem criar aquelas
+  bordas grandes no mobile.
+*/
+
+.instagram-panel {
+
+  width:
+    100%;
+
+
+  margin:
+    0 auto;
+
+
+  overflow:
+    hidden;
+
+
+  border-radius:
+    18px;
+
+
+  background:
+    transparent;
+
+}
+
+
+/* Widget */
+.instagram-widget {
+
+  width:
+    100%;
+
+
+  max-width:
+    100%;
+
+
+  margin:
+    0 auto;
+
+
+  overflow:
+    hidden;
+
+
+  border-radius:
+    inherit;
+
+}
+
+
+.sk-instagram-feed {
+
+  width:
+    100% !important;
+
+
+  max-width:
+    100% !important;
+
+
+  margin:
+    0 auto !important;
+
 }
 
 
 /*
-  Limita a largura do texto
-  para manter a composição compacta.
+  O SociableKIT pode inserir iframe.
+
+  Forçamos ele a ocupar
+  toda a largura disponível.
 */
-.address span {
-  max-width: 390px;
+.instagram-widget iframe {
+
+  display:
+    block !important;
+
+
+  width:
+    100% !important;
+
+
+  max-width:
+    100% !important;
+
+
+  margin:
+    0 auto !important;
+
+
+  border:
+    0 !important;
+
+
+  border-radius:
+    0 !important;
+
 }
 
 
-/* Ícone */
+/* =========================================================
+   16. ENDEREÇO
+   ========================================================= */
+
+.address {
+
+  width:
+    100%;
+
+
+  max-width:
+    460px;
+
+
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    center;
+
+
+  gap:
+    10px;
+
+
+  margin-top:
+    clamp(
+      46px,
+      7vh,
+      68px
+    );
+
+
+  margin-left:
+    auto;
+
+
+  margin-right:
+    auto;
+
+
+  padding:
+    0 8px;
+
+
+  color:
+    var(--white);
+
+
+  text-decoration:
+    none;
+
+
+  text-align:
+    center;
+
+
+  font-size:
+    clamp(
+      0.95rem,
+      2vw,
+      1.08rem
+    );
+
+
+  font-weight:
+    650;
+
+
+  line-height:
+    1.35;
+
+
+  text-shadow:
+
+    0
+    2px
+    12px
+    rgba(
+      0,
+      0,
+      0,
+      0.48
+    );
+
+}
+
+
+.address span {
+
+  max-width:
+    390px;
+
+}
+
+
 .address svg {
+
   flex:
     0 0 22px;
+
 
   width:
     22px;
 
+
   height:
     22px;
 
+
   fill:
     currentColor;
+
 }
 
 
-/* Hover */
 .address:hover {
+
   text-decoration:
     underline;
 
+
   text-underline-offset:
     4px;
+
 }
 
 
 /* =========================================================
-   14. TABLETS
+   17. FOCO / ACESSIBILIDADE
    ========================================================= */
 
-@media (max-width: 768px) {
+.link-button:focus-visible,
+.address:focus-visible {
 
-  /*
-    Ajuste de enquadramento
-    para telas mais estreitas.
-  */
+  outline:
+    3px
+    solid
+    var(--white);
+
+
+  outline-offset:
+    4px;
+
+}
+
+
+/* =========================================================
+   18. TABLETS
+   ========================================================= */
+
+@media (
+  max-width: 768px
+) {
 
   .page-shell::before {
+
     background-position:
-      56% center;
-  }
+      56%
+      center;
 
-
-  .link-card {
-    width:
-      min(100%, 500px);
   }
 
 
   .instagram-section {
-    margin-top:
-      52px;
+
+    width:
+      min(
+        100%,
+        620px
+      );
+
   }
 
 }
 
 
 /* =========================================================
-   15. CELULARES
+   19. MOBILE
    ========================================================= */
 
-@media (max-width: 520px) {
+@media (
+  max-width: 520px
+) {
 
   .page-shell {
-    /*
-      Como agora a página possui conteúdo
-      maior que uma tela, começamos pelo topo.
-    */
-    place-items:
-      start center;
 
     padding-top:
-      max(34px, env(safe-area-inset-top));
+
+      max(
+        26px,
+        env(safe-area-inset-top)
+      );
+
+
+    padding-left:
+      18px;
+
+
+    padding-right:
+      18px;
+
 
     padding-bottom:
-      max(34px, env(safe-area-inset-bottom));
+
+      max(
+        34px,
+        env(safe-area-inset-bottom)
+      );
+
   }
 
 
-  /*
-    Melhor enquadramento
-    do carro no mobile.
-  */
   .page-shell::before {
+
     background-position:
-      58% center;
-  }
+      58%
+      center;
 
-
-  /* Texto superior */
-  .eyebrow {
-    margin-bottom:
-      16px;
   }
 
 
   /* Logo */
+  .eyebrow {
+
+    margin-bottom:
+      16px;
+
+  }
+
+
   .brand-mark {
+
     width:
       104px;
 
+
     margin-bottom:
       22px;
+
   }
 
 
   /* Título */
   h1 {
+
     margin-bottom:
       28px;
 
+
     font-size:
-      clamp(1.9rem, 9vw, 2.55rem);
+      clamp(
+        1.9rem,
+        9vw,
+        2.55rem
+      );
+
   }
 
 
   /* Botões */
   .links {
+
     gap:
-      12px;
+      11px;
+
   }
 
 
   .link-button {
+
     min-height:
       56px;
 
-    padding-left:
-      18px;
 
-    padding-right:
-      66px;
+    padding:
 
+      12px
+
+      60px
+
+      12px
+
+      60px;
+
+
+    /*
+      Menor no mobile para garantir
+      uma linha mesmo em telas estreitas.
+    */
     font-size:
-      1rem;
+      clamp(
+        0.86rem,
+        3.65vw,
+        0.98rem
+      );
+
   }
 
 
-  /* Ícones */
   .icon-badge {
+
+    right:
+      4px;
+
+
     width:
       48px;
 
+
     height:
       48px;
+
   }
 
 
-  /* Feed Instagram */
-  .instagram-section {
+  .icon-badge img {
+
+    width:
+      23px;
+
+
+    height:
+      23px;
+
+  }
+
+
+  .icon-badge svg {
+
+    width:
+      22px;
+
+
+    height:
+      22px;
+
+  }
+
+
+  /* Pix */
+  .copy-feedback {
+
     margin-top:
-      46px;
+      8px;
+
+
+    font-size:
+      0.8rem;
+
+  }
+
+
+  /* =======================================================
+     INSTAGRAM MOBILE
+     ======================================================= */
+
+  .instagram-section {
+
+    width:
+      100%;
+
+
+    margin-top:
+      38px;
+
   }
 
 
   .instagram-section__header {
+
     margin-bottom:
-      18px;
+      16px;
+
   }
 
 
   .instagram-section__eyebrow {
+
     font-size:
-      0.88rem;
+      0.84rem;
+
   }
 
 
   .instagram-section h2 {
+
     font-size:
-      1.45rem;
+      1.42rem;
+
+  }
+
+
+  /*
+    O container passa a usar
+    praticamente toda a largura disponível.
+  */
+  .instagram-panel {
+
+    width:
+      100%;
+
+
+    border-radius:
+      14px;
+
   }
 
 
   .instagram-widget {
-    border-radius:
-      16px;
+
+    width:
+      100%;
+
+  }
+
+
+  .sk-instagram-feed {
+
+    width:
+      100% !important;
+
+  }
+
+
+  .instagram-widget iframe {
+
+    width:
+      100% !important;
+
+
+    min-width:
+      100% !important;
+
   }
 
 
   /* Endereço */
   .address {
+
     width:
       100%;
 
+
     max-width:
-      320px;
+      330px;
+
 
     margin-top:
-      38px;
+      36px;
 
-    align-items:
-      center;
 
-    justify-content:
-      center;
+    font-size:
+      0.93rem;
+
 
     text-align:
       center;
 
-    font-size:
-      0.95rem;
   }
 
 
   .address span {
+
     max-width:
-      270px;
+      278px;
+
   }
 
 }
 
 
 /* =========================================================
-   16. CELULARES MUITO PEQUENOS
+   20. CELULARES PEQUENOS
    ========================================================= */
 
-@media (max-width: 360px) {
+@media (
+  max-width: 380px
+) {
 
-  .link-button {
+  .page-shell {
+
     padding-left:
-      16px;
+      14px;
+
 
     padding-right:
-      62px;
+      14px;
+
+  }
+
+
+  .link-button {
+
+    min-height:
+      54px;
+
+
+    padding-left:
+      56px;
+
+
+    padding-right:
+      56px;
+
 
     font-size:
-      0.94rem;
+      0.86rem;
+
   }
 
 
   .icon-badge {
+
     width:
       46px;
 
+
     height:
       46px;
+
   }
 
 
   .instagram-section h2 {
+
     font-size:
-      1.35rem;
+      1.34rem;
+
   }
 
 
   .address {
+
     max-width:
-      290px;
+      300px;
+
 
     font-size:
-      0.9rem;
+      0.88rem;
+
   }
 
 
   .address span {
+
     max-width:
-      245px;
+      250px;
+
   }
 
 }
 
 
 /* =========================================================
-   17. CELULAR DEITADO / TELAS BAIXAS
+   21. TELAS EXTREMAMENTE PEQUENAS
    ========================================================= */
 
-@media (max-height: 680px) and (orientation: landscape) {
+@media (
+  max-width: 330px
+) {
+
+  .link-button {
+
+    padding-left:
+      52px;
+
+
+    padding-right:
+      52px;
+
+
+    font-size:
+      0.8rem;
+
+  }
+
+}
+
+
+/* =========================================================
+   22. LANDSCAPE
+   ========================================================= */
+
+@media (
+  max-height: 680px
+)
+and
+(
+  orientation: landscape
+) {
 
   .page-shell {
-    place-items:
-      start center;
 
     padding-top:
       24px;
 
+
     padding-bottom:
       24px;
+
   }
 
 
   .eyebrow {
+
     margin-bottom:
       12px;
+
   }
 
 
   .brand-mark {
+
     width:
       88px;
 
+
     margin-bottom:
       16px;
+
   }
 
 
   h1 {
+
     margin-bottom:
       22px;
 
+
     font-size:
       2rem;
+
   }
 
 
   .links {
+
     gap:
       10px;
+
   }
 
 
   .link-button {
+
     min-height:
       50px;
+
   }
 
 
   .icon-badge {
+
     width:
       44px;
 
+
     height:
       44px;
+
   }
 
 
   .instagram-section {
+
     margin-top:
-      38px;
+      34px;
+
   }
 
 
   .address {
+
     margin-top:
-      28px;
+      30px;
+
   }
 
 }
 
 
 /* =========================================================
-   18. ACESSIBILIDADE
+   23. REDUÇÃO DE MOVIMENTO
    ========================================================= */
 
-/*
-  Remove animações caso o usuário
-  tenha solicitado redução de movimento
-  no próprio dispositivo.
-*/
-
-@media (prefers-reduced-motion: reduce) {
+@media (
+  prefers-reduced-motion: reduce
+) {
 
   *,
   *::before,
   *::after {
+
     scroll-behavior:
       auto !important;
 
+
     transition:
       none !important;
+
   }
 
 }
