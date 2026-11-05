@@ -425,57 +425,42 @@ button {
 /* =========================================================
    8. LOGO
    ========================================================= */
+/* =========================================================
+   LOGO / FOTO
+   Deixa em formato de pílula
+   ========================================================= */
 
 .brand-mark {
+  width: clamp(112px, 18vw, 145px);
 
-  display:
-    flex;
+  /*
+    Formato vertical de pílula
+  */
+  aspect-ratio: 0.78;
 
+  display: grid;
+  place-items: center;
 
-  align-items:
-    center;
+  margin-bottom: 22px;
 
+  background: #000000;
 
-  justify-content:
-    center;
+  border-radius: 999px;
 
+  overflow: hidden;
 
-  width:
-    100%;
-
-
-  margin-bottom:
-    16px;
-
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.28);
 }
 
 
 .brand-logo {
+  width: 88%;
+  height: 88%;
 
-  width:
+  object-fit: contain;
 
-    clamp(
-      170px,
-      34vw,
-      215px
-    );
-
-
-  height:
-    auto;
-
-
-  object-fit:
-    contain;
-
-
-  filter:
-
-    drop-shadow(
-      0 14px 32px
-      rgba(0, 0, 0, 0.28)
-    );
-
+  border-radius: 999px;
 }
 
 
