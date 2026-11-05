@@ -1,31 +1,47 @@
 /* =========================================================
-   Med Car Service — Central de Links
+   MED CAR SERVICE
+   Central de Links
+
+   Visual inspirado na estrutura da Panobianco:
+   - Background fotográfico escuro
+   - Conteúdo centralizado
+   - Botões robustos
+   - Ícones destacados à direita
+   - Layout responsivo
    ========================================================= */
 
 
 /* =========================================================
-   1. CORES E VARIÁVEIS
+   1. VARIÁVEIS
    ========================================================= */
 
 :root {
-
+  /* Identidade Med Car */
   --red: #D03B3B;
-
   --black: #0A0A0A;
-
   --green: #00E204;
-
   --pink: #FE4574;
 
-  --google-blue: #4285F4;
-
-  --pix-color: #D03B3B;
-
   --white: #FFFFFF;
-
   --soft-white: #F7F7F7;
 
+  /* Tons estruturais */
+  --surface: #24272B;
+  --surface-hover: #2E3237;
 
+  --border:
+    rgba(255, 255, 255, 0.14);
+
+  --text-muted:
+    rgba(255, 255, 255, 0.68);
+
+  --text-soft:
+    rgba(255, 255, 255, 0.48);
+
+  /* Google */
+  --google-blue: #4285F4;
+
+  /* Fonte original do projeto */
   --font-main:
     "Atkinson Hyperlegible Next",
     system-ui,
@@ -34,19 +50,14 @@
     "Segoe UI",
     sans-serif;
 
-
-  /* Botões */
+  /* Mesmo comportamento compacto da Panobianco */
   --content-width: 520px;
 
+  /* Feed pode ser mais largo que os botões */
+  --feed-width: 760px;
 
-  /* Feed */
-  --feed-width: 680px;
-
-
-  /* Padding geral */
   --page-padding:
-    clamp(18px, 4vw, 36px);
-
+    clamp(16px, 4vw, 34px);
 }
 
 
@@ -57,34 +68,25 @@
 *,
 *::before,
 *::after {
-
-  box-sizing:
-    border-box;
-
+  box-sizing: border-box;
 }
 
 
 html {
-
-  min-height:
-    100%;
+  min-height: 100%;
 
   background:
     var(--black);
 
   overflow-x:
     hidden;
-
 }
 
 
 body {
+  margin: 0;
 
-  margin:
-    0;
-
-  min-height:
-    100%;
+  min-height: 100%;
 
   font-family:
     var(--font-main);
@@ -98,79 +100,56 @@ body {
   overflow-x:
     hidden;
 
+  -webkit-font-smoothing:
+    antialiased;
+
+  text-rendering:
+    optimizeLegibility;
 }
 
 
 img,
 svg {
+  display: block;
 
-  display:
-    block;
-
-  max-width:
-    100%;
-
+  max-width: 100%;
 }
 
 
 a {
-
-  color:
-    inherit;
-
+  color: inherit;
 }
 
 
 button {
-
-  font:
-    inherit;
-
+  font: inherit;
 }
 
 
 /* =========================================================
-   3. PÁGINA
+   3. ESTRUTURA PRINCIPAL
    ========================================================= */
 
 .page-shell {
+  position: relative;
 
-  position:
-    relative;
+  min-height: 100vh;
+  min-height: 100dvh;
 
-  min-height:
-    100vh;
-
-  min-height:
-    100dvh;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   padding:
-
-    max(
-      28px,
-      env(safe-area-inset-top)
-    )
-
+    max(32px, env(safe-area-inset-top))
     var(--page-padding)
-
-    max(
-      44px,
-      env(safe-area-inset-bottom)
-    );
-
+    max(30px, env(safe-area-inset-bottom));
 
   overflow-x:
     hidden;
 
-
-  background:
-    var(--black);
-
-
   isolation:
     isolate;
-
 }
 
 
@@ -178,135 +157,71 @@ button {
    4. BACKGROUND
    ========================================================= */
 
+/*
+  Mantém a imagem atual da Med Car:
+  assets/cliov6.webp
+*/
+
 .page-shell::before {
+  content: "";
 
-  content:
-    "";
+  position: fixed;
 
+  inset: 0;
 
-  position:
-    fixed;
-
-
-  inset:
-    0;
-
-
-  z-index:
-    -2;
-
-
-  pointer-events:
-    none;
-
+  z-index: -2;
 
   background:
-
-    linear-gradient(
-
-      90deg,
-
-      rgba(10, 10, 10, 0.94) 0%,
-
-      rgba(10, 10, 10, 0.94) 22%,
-
-      rgba(10, 10, 10, 0.94) 50%,
-
-      rgba(10, 10, 10, 0.94) 78%,
-
-      rgba(10, 10, 10, 0.94) 100%
-
-    ),
-
     url("./assets/cliov6.webp")
-    center center /
-    cover
+    center center / cover
     no-repeat;
 
+  transform:
+    scale(1.02);
 }
 
 
 /* =========================================================
    5. OVERLAY
+
+   O objetivo aqui é aproximar o tratamento da Panobianco:
+   foto ainda perceptível, mas sem competir com os elementos.
    ========================================================= */
 
 .background-overlay {
+  position: fixed;
 
-  position:
-    fixed;
+  inset: 0;
 
+  z-index: -1;
 
-  inset:
-    0;
-
-
-  z-index:
-    -1;
-
-
-  pointer-events:
-    none;
-
+  pointer-events: none;
 
   background:
 
     radial-gradient(
+      circle at 50% 18%,
+      rgba(208, 59, 59, 0.16) 0%,
+      rgba(10, 10, 10, 0.46) 32%,
+      rgba(10, 10, 10, 0.78) 68%,
+      rgba(10, 10, 10, 0.96) 100%
+    ),
 
-      circle at center,
-
-      rgba(208, 59, 59, 0.45)
-      0%,
-
-      rgba(208, 59, 59, 0.30)
-      18%,
-
-      rgba(208, 59, 59, 0.16)
-      38%,
-
-      rgba(10, 10, 10, 0.20)
-      58%,
-
-      rgba(10, 10, 10, 0.55)
-      100%
-
+    linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.58) 0%,
+      rgba(10, 10, 10, 0.74) 48%,
+      rgba(10, 10, 10, 0.97) 100%
     );
-
 }
 
 
 /* =========================================================
-   6. WRAPPER GERAL
-   ========================================================= */
-
-.content-wrapper {
-
-  width:
-    100%;
-
-
-  display:
-    flex;
-
-
-  flex-direction:
-    column;
-
-
-  align-items:
-    center;
-
-
-  margin:
-    0 auto;
-
-}
-
-
-/* =========================================================
-   7. BLOCO PRINCIPAL
+   6. CARD / CONTEÚDO CENTRAL
    ========================================================= */
 
 .link-card {
+  position: relative;
 
   width:
     min(
@@ -314,290 +229,186 @@ button {
       var(--content-width)
     );
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  display:
-    flex;
+  text-align: center;
 
-
-  flex-direction:
-    column;
-
-
-  align-items:
-    center;
-
-
-  text-align:
-    center;
-
+  z-index: 1;
 }
 
 
 /* =========================================================
-   8. EYEBROW
+   7. EYEBROW
    ========================================================= */
 
 .eyebrow {
-
   margin:
+    0 0 12px;
 
-    0
-
-    0
-
-    clamp(
-      18px,
-      3vh,
-      28px
-    );
-
+  color:
+    var(--red);
 
   font-size:
-    clamp(
-      1rem,
-      2vw,
-      1.18rem
-    );
-
+    0.8rem;
 
   font-weight:
-    400;
-
+    700;
 
   letter-spacing:
-    -0.01em;
+    0.14em;
 
+  text-transform:
+    uppercase;
 }
 
 
 /* =========================================================
-   9. LOGO
+   8. LOGO
    ========================================================= */
 
 .brand-mark {
+  display: flex;
 
-  width:
-    clamp(
-      112px,
-      18vw,
-      145px
-    );
+  align-items: center;
+  justify-content: center;
 
-
-  aspect-ratio:
-    0.78;
-
-
-  display:
-    grid;
-
-
-  place-items:
-    center;
-
+  width: 100%;
 
   margin-bottom:
-    clamp(
-      24px,
-      4vh,
-      38px
-    );
-
-
-  background:
-    var(--black);
-
-
-  border-radius:
-    42% / 32%;
-
-
-  overflow:
-    hidden;
-
+    16px;
 }
 
 
 .brand-logo {
-
   width:
-    93%;
-
+    clamp(
+      170px,
+      34vw,
+      215px
+    );
 
   height:
-    93%;
-
+    auto;
 
   object-fit:
     contain;
 
+  filter:
+    drop-shadow(
+      0 14px 32px
+      rgba(0, 0, 0, 0.28)
+    );
 }
 
 
 /* =========================================================
-   10. TÍTULO
+   9. NOME DA EMPRESA
    ========================================================= */
 
 h1 {
-
   margin:
+    0 0 28px;
 
-    0
-
-    0
-
-    clamp(
-      32px,
-      5vh,
-      48px
-    );
-
+  color:
+    var(--white);
 
   font-size:
     clamp(
       2rem,
-      5vw,
-      3rem
+      6vw,
+      2.75rem
     );
 
-
   line-height:
-    0.98;
-
+    1;
 
   font-weight:
     800;
 
-
   letter-spacing:
     -0.035em;
+}
 
 
-  text-transform:
-    uppercase;
+/* =========================================================
+   10. LINKS
+   ========================================================= */
 
+.links {
+  width: 100%;
+
+  display: grid;
+
+  gap:
+    12px;
 }
 
 
 /* =========================================================
    11. BOTÕES
+
+   Compatível com o HTML original da Med Car:
+   .link-button
+   .link-label
+   .icon-badge
    ========================================================= */
 
-.links {
-
-  width:
-    100%;
-
-
-  display:
-    grid;
-
-
-  gap:
-    14px;
-
-}
-
-
 .link-button {
+  position: relative;
 
-  position:
-    relative;
-
-
-  width:
-    100%;
-
+  width: 100%;
 
   min-height:
-    58px;
+    64px;
 
+  display: flex;
 
-  display:
-    flex;
-
-
-  align-items:
-    center;
-
-
-  justify-content:
-    center;
-
+  align-items: center;
+  justify-content: center;
 
   padding:
-
-    14px
-
-    68px
-
-    14px
-
-    68px;
-
+    13px 70px;
 
   border:
-    0;
-
+    1px solid
+    var(--border);
 
   border-radius:
-    999px;
-
+    14px;
 
   background:
-    rgba(
-      255,
-      255,
-      255,
-      0.96
-    );
-
+    rgba(36, 39, 43, 0.94);
 
   color:
-    var(--black);
-
+    var(--white);
 
   text-decoration:
     none;
 
-
-  cursor:
-    pointer;
-
-
   font-size:
-    clamp(
-      0.96rem,
-      2vw,
-      1.08rem
-    );
-
+    1rem;
 
   font-weight:
-    720;
+    700;
 
+  line-height:
+    1;
 
   box-shadow:
 
-    0 10px 35px
-    rgba(
-      0,
-      0,
-      0,
-      0.18
-    ),
+    0 12px 32px
+    rgba(0, 0, 0, 0.20),
 
-    inset
-    0
-    1px
-    0
-    rgba(
-      255,
-      255,
-      255,
-      0.7
-    );
+    inset 0 1px 0
+    rgba(255, 255, 255, 0.025);
 
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
 
   transition:
 
@@ -605,259 +416,476 @@ h1 {
     180ms
     ease,
 
-    box-shadow
+    border-color
     180ms
     ease,
 
     background
     180ms
-    ease;
+    ease,
 
+    box-shadow
+    180ms
+    ease;
 }
 
 
-/*
-  Impede quebra de texto
-  em qualquer botão.
-*/
-.link-label {
+/* Filete vermelho lateral */
+.link-button::before {
+  content: "";
 
-  line-height:
-    1;
+  position: absolute;
 
+  left: 0;
 
-  white-space:
-    nowrap;
+  top:
+    14px;
 
+  bottom:
+    14px;
 
-  overflow:
-    hidden;
+  width:
+    4px;
 
+  border-radius:
+    0 4px 4px 0;
 
-  text-overflow:
-    ellipsis;
-
+  background:
+    var(--red);
 }
 
 
 /* Hover */
 .link-button:hover {
-
   transform:
     translateY(-2px);
 
-
   background:
-    var(--white);
+    var(--surface-hover);
 
+  border-color:
+    rgba(208, 59, 59, 0.55);
 
   box-shadow:
 
-    0 16px 38px
-    rgba(
-      0,
-      0,
-      0,
-      0.26
-    ),
-
-    inset
-    0
-    1px
-    0
-    rgba(
-      255,
-      255,
-      255,
-      0.8
-    );
-
+    0 16px 36px
+    rgba(0, 0, 0, 0.28);
 }
 
 
+/* Clique */
 .link-button:active {
-
   transform:
     translateY(0);
+}
 
+
+/* Texto */
+.link-label {
+  display: block;
+
+  max-width: 100%;
+
+  white-space:
+    nowrap;
+
+  overflow:
+    hidden;
+
+  text-overflow:
+    ellipsis;
+
+  text-align:
+    center;
+}
+
+
+/* Compatibilidade caso exista a versão nova */
+.link-button__text {
+  white-space:
+    nowrap;
+
+  overflow:
+    hidden;
+
+  text-overflow:
+    ellipsis;
 }
 
 
 /* =========================================================
-   12. ÍCONES DOS BOTÕES
+   12. BLOCO DO ÍCONE
    ========================================================= */
 
-.icon-badge {
-
-  position:
-    absolute;
-
+.icon-badge,
+.link-button__icon {
+  position: absolute;
 
   right:
-    4px;
+    6px;
 
+  top:
+    50%;
+
+  transform:
+    translateY(-50%);
 
   width:
     50px;
 
-
   height:
     50px;
 
-
-  display:
-    grid;
-
+  display: grid;
 
   place-items:
     center;
 
+  flex:
+    0 0 auto;
 
   border-radius:
-    999px;
-
-
-  box-shadow:
-
-    0
-    6px
-    18px
-    rgba(
-      0,
-      0,
-      0,
-      0.24
-    );
-
-}
-
-
-.icon-badge img {
-
-  width:
-    25px;
-
-
-  height:
-    25px;
-
-
-  object-fit:
-    contain;
-
-}
-
-
-.icon-badge svg {
-
-  width:
-    24px;
-
-
-  height:
-    24px;
-
-
-  fill:
-    currentColor;
-
-}
-
-
-/* WhatsApp */
-.icon-badge--whatsapp {
+    11px;
 
   background:
-    var(--green);
-
+    var(--red);
 
   color:
     var(--white);
 
+  overflow:
+    hidden;
+
+  transition:
+
+    transform
+    180ms
+    ease,
+
+    filter
+    180ms
+    ease;
+}
+
+
+/* Ícone em imagem */
+.icon-badge img {
+  width:
+    23px;
+
+  height:
+    23px;
+
+  object-fit:
+    contain;
+}
+
+
+/* Ícone SVG */
+.icon-badge svg,
+.link-button__icon svg {
+  width:
+    23px;
+
+  height:
+    23px;
+
+  fill:
+    currentColor;
+}
+
+
+/* Micro-interação */
+.link-button:hover
+.icon-badge,
+.link-button:hover
+.link-button__icon {
+  transform:
+    translateY(-50%)
+    scale(1.04);
+
+  filter:
+    brightness(1.05);
+}
+
+
+/* =========================================================
+   13. CORES ESPECÍFICAS DOS ÍCONES
+   ========================================================= */
+
+/* WhatsApp */
+.icon-badge--whatsapp {
+  background:
+    var(--green);
 }
 
 
 /* Instagram */
 .icon-badge--instagram {
-
   background:
     var(--pink);
-
-
-  color:
-    var(--white);
-
 }
 
 
-/* Google */
+/* Google / localização */
 .icon-badge--google {
-
   background:
     var(--google-blue);
-
-
-  color:
-    var(--white);
-
 }
 
 
 /* Pix */
 .icon-badge--pix {
-
   background:
-    var(--pix-color);
+    #32BCAD;
+}
 
 
-  color:
-    var(--white);
-
+/* Botão específico de Pix */
+.link-button--pix::before {
+  background:
+    #32BCAD;
 }
 
 
 /* =========================================================
-   13. FEEDBACK PIX
+   14. ENDEREÇO
+   ========================================================= */
+
+.address {
+  width:
+    min(
+      100%,
+      460px
+    );
+
+  display: flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    10px;
+
+  margin:
+    30px auto 0;
+
+  padding:
+    0 10px;
+
+  color:
+    rgba(255, 255, 255, 0.88);
+
+  font-size:
+    0.93rem;
+
+  font-weight:
+    500;
+
+  line-height:
+    1.35;
+
+  text-align:
+    center;
+
+  text-decoration:
+    none;
+
+  transition:
+    color
+    180ms
+    ease;
+}
+
+
+.address:hover {
+  color:
+    var(--white);
+}
+
+
+/* Texto do endereço */
+.address span {
+  display: block;
+
+  max-width:
+    390px;
+
+  text-align:
+    center;
+}
+
+
+/* Caso o ícone seja SVG */
+.address svg {
+  width:
+    21px;
+
+  height:
+    21px;
+
+  flex:
+    0 0 21px;
+
+  fill:
+    var(--red);
+}
+
+
+/* Caso seja imagem */
+.address img {
+  width:
+    21px;
+
+  height:
+    21px;
+
+  flex:
+    0 0 21px;
+
+  object-fit:
+    contain;
+}
+
+
+/* =========================================================
+   15. HORÁRIOS
+
+   Mantido também para compatibilidade caso o HTML da Med Car
+   passe a usar o mesmo componente.
+   ========================================================= */
+
+.hours {
+  width: 100%;
+
+  margin-top:
+    28px;
+
+  padding:
+    20px 22px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    15px;
+
+  background:
+    rgba(36, 39, 43, 0.88);
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+
+  text-align:
+    left;
+
+  box-shadow:
+    0 12px 32px
+    rgba(0, 0, 0, 0.16);
+}
+
+
+.hours__title {
+  margin:
+    0 0 14px;
+
+  color:
+    var(--red);
+
+  font-size:
+    0.8rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.1em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.hours__row {
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    18px;
+
+  padding:
+    9px 0;
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.09);
+
+  color:
+    rgba(255, 255, 255, 0.82);
+
+  font-size:
+    0.9rem;
+}
+
+
+.hours__row:last-child {
+  border-bottom:
+    none;
+}
+
+
+.hours__row strong {
+  color:
+    var(--white);
+
+  font-weight:
+    700;
+
+  white-space:
+    nowrap;
+}
+
+
+/* =========================================================
+   16. FEEDBACK DE CÓPIA
+   Pix / Wi-Fi / outros
    ========================================================= */
 
 .copy-feedback {
+  min-height:
+    20px;
 
   margin-top:
     10px;
 
-
-  height:
-    20px;
-
-
   color:
-    rgba(
-      255,
-      255,
-      255,
-      0.78
-    );
-
+    rgba(255, 255, 255, 0.72);
 
   font-size:
-    0.85rem;
-
+    0.82rem;
 
   font-weight:
-    600;
-
+    500;
 
   opacity:
     0;
 
-
   transform:
-    translateY(-4px);
-
+    translateY(-5px);
 
   pointer-events:
     none;
-
 
   transition:
 
@@ -868,384 +896,327 @@ h1 {
     transform
     180ms
     ease;
-
 }
 
 
 .copy-feedback.is-visible {
-
   opacity:
     1;
 
-
   transform:
     translateY(0);
-
 }
 
 
 /* =========================================================
-   14. INSTAGRAM
+   17. INSTAGRAM
    ========================================================= */
 
-.instagram-section {
+/*
+  Fica fora da largura de 520px dos botões.
+  Mantém o feed visualmente mais confortável.
+*/
 
+.instagram-section {
   width:
     min(
       100%,
       var(--feed-width)
     );
 
-
-  margin-top:
+  margin:
     clamp(
-      46px,
+      42px,
       7vh,
-      68px
-    );
-
+      62px
+    )
+    auto 0;
 
   text-align:
     center;
-
 }
 
 
-/* Título */
+/* Cabeçalho do feed */
 .instagram-section__header {
-
   margin-bottom:
-    20px;
-
+    18px;
 }
 
 
 .instagram-section__eyebrow {
-
   display:
     block;
-
 
   margin-bottom:
     6px;
 
-
   color:
-    rgba(
-      255,
-      255,
-      255,
-      0.68
-    );
-
+    var(--red);
 
   font-size:
-    0.92rem;
-
+    0.85rem;
 
   font-weight:
-    500;
+    700;
 
+  letter-spacing:
+    0.1em;
+
+  text-transform:
+    uppercase;
 }
 
 
 .instagram-section h2 {
-
-  margin:
-    0;
-
+  margin: 0;
 
   color:
     var(--white);
 
-
   font-size:
     clamp(
-      1.4rem,
+      1.45rem,
       3vw,
-      1.8rem
+      1.9rem
     );
-
-
-  font-weight:
-    750;
-
 
   line-height:
     1.1;
 
+  font-weight:
+    700;
 
   letter-spacing:
     -0.025em;
-
 }
 
 
 /* =========================================================
-   15. DIV EXCLUSIVA DO FEED
+   18. CONTAINER DO FEED
    ========================================================= */
 
-/*
-  Essa div não pertence ao link-card.
-
-  Dessa forma o widget pode ter
-  largura própria sem criar aquelas
-  bordas grandes no mobile.
-*/
-
-.instagram-panel {
-
+.instagram-panel,
+.instagram-widget {
   width:
     100%;
 
+  max-width:
+    100%;
 
   margin:
     0 auto;
 
-
   overflow:
     hidden;
 
-
   border-radius:
-    18px;
-
+    16px;
 
   background:
     transparent;
-
 }
 
 
-/* Widget */
-.instagram-widget {
-
+/* RevuKit */
+.instagram-panel
+> [data-revukit-instagram],
+.instagram-widget
+> [data-revukit-instagram] {
   width:
-    100%;
-
+    100% !important;
 
   max-width:
-    100%;
-
+    100% !important;
 
   margin:
-    0 auto;
-
-
-  overflow:
-    hidden;
-
-
-  border-radius:
-    inherit;
-
+    0 auto !important;
 }
 
 
+/* SociableKIT antigo */
 .sk-instagram-feed {
-
   width:
     100% !important;
-
 
   max-width:
     100% !important;
 
-
   margin:
     0 auto !important;
-
-}
-
-
-/*
-  O SociableKIT pode inserir iframe.
-
-  Forçamos ele a ocupar
-  toda a largura disponível.
-*/
-.instagram-widget iframe {
-
-  display:
-    block !important;
-
-
-  width:
-    100% !important;
-
-
-  max-width:
-    100% !important;
-
-
-  margin:
-    0 auto !important;
-
-
-  border:
-    0 !important;
-
-
-  border-radius:
-    0 !important;
-
 }
 
 
 /* =========================================================
-   16. ENDEREÇO
+   19. FOOTER
    ========================================================= */
 
-.address {
-
-  width:
-    100%;
-
-
-  max-width:
-    460px;
-
-
-  display:
-    flex;
-
+.footer {
+  display: flex;
 
   align-items:
     center;
 
-
   justify-content:
     center;
 
-
   gap:
-    10px;
-
+    5px;
 
   margin-top:
-    clamp(
-      46px,
-      7vh,
-      68px
-    );
-
-
-  margin-left:
-    auto;
-
-
-  margin-right:
-    auto;
-
-
-  padding:
-    0 8px;
-
+    32px;
 
   color:
-    var(--white);
+    var(--text-soft);
 
+  font-size:
+    0.76rem;
+}
+
+
+.footer a {
+  color:
+    rgba(255, 255, 255, 0.78);
+
+  font-weight:
+    600;
 
   text-decoration:
     none;
 
-
-  text-align:
-    center;
-
-
-  font-size:
-    clamp(
-      0.95rem,
-      2vw,
-      1.08rem
-    );
-
-
-  font-weight:
-    650;
-
-
-  line-height:
-    1.35;
-
-
-  text-shadow:
-
-    0
-    2px
-    12px
-    rgba(
-      0,
-      0,
-      0,
-      0.48
-    );
-
+  transition:
+    color
+    180ms
+    ease;
 }
 
 
-.address span {
-
-  max-width:
-    390px;
-
-}
-
-
-.address svg {
-
-  flex:
-    0 0 22px;
-
-
-  width:
-    22px;
-
-
-  height:
-    22px;
-
-
-  fill:
-    currentColor;
-
-}
-
-
-.address:hover {
-
-  text-decoration:
-    underline;
-
-
-  text-underline-offset:
-    4px;
-
+.footer a:hover {
+  color:
+    var(--red);
 }
 
 
 /* =========================================================
-   17. FOCO / ACESSIBILIDADE
+   20. FOCO / ACESSIBILIDADE
    ========================================================= */
 
 .link-button:focus-visible,
-.address:focus-visible {
-
+.address:focus-visible,
+.footer a:focus-visible {
   outline:
-    3px
-    solid
-    var(--white);
-
+    3px solid
+    var(--red);
 
   outline-offset:
     4px;
-
 }
 
 
 /* =========================================================
-   18. TABLETS
+   21. ANIMAÇÃO DE ENTRADA
+
+   Caso o HTML possua as classes .entrance.
+   Não interfere se elas não existirem.
+   ========================================================= */
+
+.entrance {
+  opacity:
+    0;
+
+  transform:
+    translateY(16px);
+
+  animation:
+    medcarEntrance
+    650ms
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    forwards;
+}
+
+
+.entrance--logo {
+  animation-delay:
+    70ms;
+}
+
+
+.entrance--title {
+  animation-delay:
+    150ms;
+}
+
+
+.entrance--button-1 {
+  animation-delay:
+    230ms;
+}
+
+
+.entrance--button-2 {
+  animation-delay:
+    300ms;
+}
+
+
+.entrance--button-3 {
+  animation-delay:
+    370ms;
+}
+
+
+.entrance--button-4 {
+  animation-delay:
+    440ms;
+}
+
+
+.entrance--button-5 {
+  animation-delay:
+    510ms;
+}
+
+
+.entrance--button-6 {
+  animation-delay:
+    580ms;
+}
+
+
+.entrance--footer {
+  animation-delay:
+    650ms;
+}
+
+
+@keyframes medcarEntrance {
+  from {
+    opacity:
+      0;
+
+    transform:
+      translateY(16px)
+      scale(0.988);
+  }
+
+  to {
+    opacity:
+      1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   22. TABLET
    ========================================================= */
 
 @media (
@@ -1253,29 +1224,24 @@ h1 {
 ) {
 
   .page-shell::before {
-
     background-position:
-      56%
-      center;
-
+      55% center;
   }
 
 
   .instagram-section {
-
     width:
       min(
         100%,
-        620px
+        640px
       );
-
   }
 
 }
 
 
 /* =========================================================
-   19. MOBILE
+   23. MOBILE
    ========================================================= */
 
 @media (
@@ -1283,294 +1249,254 @@ h1 {
 ) {
 
   .page-shell {
-
     padding-top:
 
       max(
-        26px,
+        24px,
         env(safe-area-inset-top)
       );
 
 
     padding-left:
-      18px;
+      16px;
 
 
     padding-right:
-      18px;
+      16px;
 
 
     padding-bottom:
 
       max(
-        34px,
+        28px,
         env(safe-area-inset-bottom)
       );
-
   }
 
 
+  /* Melhor enquadramento do carro no mobile */
   .page-shell::before {
-
     background-position:
-      58%
-      center;
+      58% center;
+  }
 
+
+  /* Texto superior */
+  .eyebrow {
+    margin-bottom:
+      9px;
+
+    font-size:
+      0.72rem;
   }
 
 
   /* Logo */
-  .eyebrow {
-
+  .brand-mark {
     margin-bottom:
-      16px;
-
+      14px;
   }
 
 
-  .brand-mark {
-
+  .brand-logo {
     width:
-      104px;
-
-
-    margin-bottom:
-      22px;
-
+      165px;
   }
 
 
   /* Título */
   h1 {
-
     margin-bottom:
-      28px;
-
+      24px;
 
     font-size:
+
       clamp(
-        1.9rem,
-        9vw,
-        2.55rem
+        1.75rem,
+        8vw,
+        2.2rem
       );
 
+    line-height:
+      1;
   }
 
 
   /* Botões */
   .links {
-
     gap:
-      11px;
-
+      10px;
   }
 
 
   .link-button {
-
     min-height:
       56px;
 
-
     padding:
-
-      12px
-
-      60px
-
-      12px
-
-      60px;
-
-
-    /*
-      Menor no mobile para garantir
-      uma linha mesmo em telas estreitas.
-    */
-    font-size:
-      clamp(
-        0.86rem,
-        3.65vw,
-        0.98rem
-      );
-
-  }
-
-
-  .icon-badge {
-
-    right:
-      4px;
-
-
-    width:
-      48px;
-
-
-    height:
-      48px;
-
-  }
-
-
-  .icon-badge img {
-
-    width:
-      23px;
-
-
-    height:
-      23px;
-
-  }
-
-
-  .icon-badge svg {
-
-    width:
-      22px;
-
-
-    height:
-      22px;
-
-  }
-
-
-  /* Pix */
-  .copy-feedback {
-
-    margin-top:
-      8px;
-
-
-    font-size:
-      0.8rem;
-
-  }
-
-
-  /* =======================================================
-     INSTAGRAM MOBILE
-     ======================================================= */
-
-  .instagram-section {
-
-    width:
-      100%;
-
-
-    margin-top:
-      38px;
-
-  }
-
-
-  .instagram-section__header {
-
-    margin-bottom:
-      16px;
-
-  }
-
-
-  .instagram-section__eyebrow {
-
-    font-size:
-      0.84rem;
-
-  }
-
-
-  .instagram-section h2 {
-
-    font-size:
-      1.42rem;
-
-  }
-
-
-  /*
-    O container passa a usar
-    praticamente toda a largura disponível.
-  */
-  .instagram-panel {
-
-    width:
-      100%;
-
+      12px 58px;
 
     border-radius:
-      14px;
+      13px;
 
+    font-size:
+
+      clamp(
+        0.86rem,
+        3.7vw,
+        0.96rem
+      );
   }
 
 
-  .instagram-widget {
+  .link-button::before {
+    top:
+      13px;
 
-    width:
-      100%;
-
+    bottom:
+      13px;
   }
 
 
-  .sk-instagram-feed {
+  /* Ícones */
+  .icon-badge,
+  .link-button__icon {
+    right:
+      5px;
 
     width:
-      100% !important;
+      46px;
 
+    height:
+      46px;
+
+    border-radius:
+      10px;
   }
 
 
-  .instagram-widget iframe {
-
+  .icon-badge img,
+  .icon-badge svg,
+  .link-button__icon svg {
     width:
-      100% !important;
+      21px;
 
-
-    min-width:
-      100% !important;
-
+    height:
+      21px;
   }
 
 
   /* Endereço */
   .address {
-
     width:
       100%;
 
-
     max-width:
-      330px;
-
+      340px;
 
     margin-top:
-      36px;
+      27px;
 
+    padding:
+      0 6px;
 
     font-size:
-      0.93rem;
-
-
-    text-align:
-      center;
-
+      0.86rem;
   }
 
 
   .address span {
-
     max-width:
-      278px;
+      285px;
+  }
 
+
+  /* Horário */
+  .hours {
+    margin-top:
+      24px;
+
+    padding:
+      17px 16px;
+
+    border-radius:
+      14px;
+  }
+
+
+  .hours__title {
+    margin-bottom:
+      12px;
+
+    font-size:
+      0.76rem;
+  }
+
+
+  .hours__row {
+    gap:
+      12px;
+
+    padding:
+      8px 0;
+
+    font-size:
+      0.83rem;
+  }
+
+
+  /* Instagram */
+  .instagram-section {
+    width:
+      100%;
+
+    margin-top:
+      38px;
+  }
+
+
+  .instagram-section__header {
+    margin-bottom:
+      15px;
+  }
+
+
+  .instagram-section__eyebrow {
+    font-size:
+      0.78rem;
+  }
+
+
+  .instagram-section h2 {
+    font-size:
+      1.4rem;
+  }
+
+
+  .instagram-panel,
+  .instagram-widget {
+    width:
+      100%;
+
+    border-radius:
+      14px;
+  }
+
+
+  /* Footer */
+  .footer {
+    margin-top:
+      26px;
+
+    font-size:
+      0.72rem;
   }
 
 }
 
 
 /* =========================================================
-   20. CELULARES PEQUENOS
+   24. MOBILE PEQUENO
    ========================================================= */
 
 @media (
@@ -1578,81 +1504,73 @@ h1 {
 ) {
 
   .page-shell {
-
     padding-left:
-      14px;
-
+      13px;
 
     padding-right:
-      14px;
+      13px;
+  }
 
+
+  .brand-logo {
+    width:
+      150px;
+  }
+
+
+  h1 {
+    font-size:
+      1.72rem;
   }
 
 
   .link-button {
-
     min-height:
       54px;
 
-
     padding-left:
-      56px;
-
+      54px;
 
     padding-right:
-      56px;
-
+      54px;
 
     font-size:
-      0.86rem;
-
+      0.83rem;
   }
 
 
-  .icon-badge {
-
+  .icon-badge,
+  .link-button__icon {
     width:
-      46px;
-
+      44px;
 
     height:
-      46px;
-
-  }
-
-
-  .instagram-section h2 {
-
-    font-size:
-      1.34rem;
-
+      44px;
   }
 
 
   .address {
-
     max-width:
-      300px;
-
+      305px;
 
     font-size:
-      0.88rem;
-
+      0.83rem;
   }
 
 
-  .address span {
+  .hours__row {
+    gap:
+      8px;
 
-    max-width:
-      250px;
-
+    font-size:
+      0.79rem;
   }
 
 }
 
 
 /* =========================================================
-   21. TELAS EXTREMAMENTE PEQUENAS
+   25. TELAS MUITO ESTREITAS
    ========================================================= */
 
 @media (
@@ -1660,25 +1578,27 @@ h1 {
 ) {
 
   .link-button {
-
     padding-left:
-      52px;
-
+      50px;
 
     padding-right:
-      52px;
-
+      50px;
 
     font-size:
-      0.8rem;
+      0.77rem;
+  }
 
+
+  .brand-logo {
+    width:
+      140px;
   }
 
 }
 
 
 /* =========================================================
-   22. LANDSCAPE
+   26. LANDSCAPE
    ========================================================= */
 
 @media (
@@ -1690,97 +1610,61 @@ and
 ) {
 
   .page-shell {
-
     padding-top:
-      24px;
-
+      20px;
 
     padding-bottom:
-      24px;
-
+      20px;
   }
 
 
-  .eyebrow {
-
-    margin-bottom:
-      12px;
-
-  }
-
-
-  .brand-mark {
-
+  .brand-logo {
     width:
-      88px;
-
-
-    margin-bottom:
-      16px;
-
+      145px;
   }
 
 
   h1 {
-
     margin-bottom:
-      22px;
-
+      20px;
 
     font-size:
-      2rem;
-
-  }
-
-
-  .links {
-
-    gap:
-      10px;
-
+      1.8rem;
   }
 
 
   .link-button {
-
     min-height:
       50px;
-
   }
 
 
-  .icon-badge {
-
+  .icon-badge,
+  .link-button__icon {
     width:
-      44px;
-
+      42px;
 
     height:
-      44px;
-
+      42px;
   }
 
 
   .instagram-section {
-
     margin-top:
-      34px;
-
+      32px;
   }
 
 
-  .address {
-
+  .footer {
     margin-top:
-      30px;
-
+      22px;
   }
 
 }
 
 
 /* =========================================================
-   23. REDUÇÃO DE MOVIMENTO
+   27. REDUÇÃO DE MOVIMENTO
    ========================================================= */
 
 @media (
@@ -1790,14 +1674,23 @@ and
   *,
   *::before,
   *::after {
-
-    scroll-behavior:
-      auto !important;
-
-
     transition:
       none !important;
 
+    scroll-behavior:
+      auto !important;
+  }
+
+
+  .entrance {
+    opacity:
+      1 !important;
+
+    transform:
+      none !important;
+
+    animation:
+      none !important;
   }
 
 }
